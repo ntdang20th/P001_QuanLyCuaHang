@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Height="600" Width="900"
              Background="#d3d8e3">
+<<<<<<< HEAD
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -34,6 +36,33 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
+=======
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>     
+        
+        <!--Phần thông tin-->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--Chức năng-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" 
+>>>>>>> 2b39c2cb66e118d5fc9f7daaca0a79b33d3e88c7
                         Style="{StaticResource ButtonChucNang}"
                         Content="Thêm HD"/>
                     <Button Grid.Column="1"
@@ -45,7 +74,12 @@
                     <Button Grid.Column="3"
                         Style="{StaticResource ButtonChucNang}"
                         Content="Xóa SP"/>
+<<<<<<< HEAD
                     <Button Grid.Column="4"
+=======
+                <Button Grid.Column="4"
+                        
+>>>>>>> 2b39c2cb66e118d5fc9f7daaca0a79b33d3e88c7
                         Style="{StaticResource ButtonChucNang}"
                         Content="Hủy HD"/>
                 </Grid>
@@ -62,9 +96,56 @@
 
                 </Grid>
             </Grid>
+<<<<<<< HEAD
             <!--Phần nội dung hóa đơn-->
             <Grid Grid.Column="1">
 
+=======
+            <!--Nhà cung cấp-->
+            <materialDesign:Card  Grid.Row="1"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="White"
+                                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                  UniformCornerRadius="5"
+                                  Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="Magnify" 
+                                             Grid.Column="0"
+                                             Foreground="Black"
+                                             Width="30" Height="30"
+                                             VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                    <TextBox materialDesign:HintAssist.Hint="Nhập từ khóa"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Margin="2 5"
+                             Foreground="Black"
+                             Padding="0"
+                             Grid.Column="1"/>
+
+                    <ComboBox Grid.Column="2"
+                              Margin="2 5"
+                              VerticalAlignment="Bottom"
+                              Foreground="Black"
+                              materialDesign:HintAssist.Hint="Nhà cung cấp"
+                              ItemsSource="{Binding ListNCC}"
+                              DisplayMemberPath="TenNhaCungCap"
+                              SelectedItem="{Binding SelectedNCC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ComboBox>
+                </Grid>
+            </materialDesign:Card>
+            <!--Thông tin sản phẩm-->
+            <Grid Grid.Row="2">
+                
+            </Grid>
+            <!--List Sản phẩm-->
+            <Grid Grid.Row="3">
+                
+>>>>>>> 2b39c2cb66e118d5fc9f7daaca0a79b33d3e88c7
             </Grid>
         </Grid>
     </materialDesign:TransitioningContent>
