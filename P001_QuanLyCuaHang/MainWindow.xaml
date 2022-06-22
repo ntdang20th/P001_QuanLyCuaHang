@@ -20,5 +20,6 @@
         <TextBlock Text="demo voi cmd"/>
         <TextBlock Text="demo voi cmd"/>
         <TextBlock Text="demo voi cmd"/>
+        <TextBlock Text="commit"/>
     </Grid>
 </Window>
