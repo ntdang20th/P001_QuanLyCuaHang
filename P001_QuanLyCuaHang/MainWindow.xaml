@@ -15,5 +15,8 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock Text="demo voi cmd"/>
+        <TextBlock Text="commit"/>
+        <TextBlock Text="commit"/>
+        <TextBlock Text="commit"/>
     </Grid>
 </Window>
