@@ -15,5 +15,6 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock Text="demo voi cmd"/>
+            <TextBlock Text="dang them"/>
     </Grid>
 </Window>
