@@ -12,9 +12,9 @@ namespace P001_QuanLyCuaHang.MVVM.Model
             this.Hangs = new HashSet<Hang>();
         }
 
-        private string _TenTinhTrang;
+        private string _TenDonViTinh;
         public int Id { get; set; }
-        public string TenTinhTrang { get => _TenTinhTrang; set { _TenTinhTrang = value; OnPropertyChanged(); } }
+        public string TenDonViTinh { get => _TenDonViTinh; set { _TenDonViTinh = value; OnPropertyChanged(); } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hang> Hangs { get; set; }
