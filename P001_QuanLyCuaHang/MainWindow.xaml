@@ -3,17 +3,146 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:P001_QuanLyCuaHang"
         mc:Ignorable="d"
-        
-        Name="mainWindow"
-        Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        ResizeMode="CanResize"
-        Background="Transparent"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+        Background="Transparent"
+        Title="MainWindow" Height="720" Width="1080">
+    <Border Background="#EEF0F5" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <!--Dashboard bên trái-->
+                <Border Grid.Row="1" Background="#303744" CornerRadius="30" Margin="10">
+
+                    <Grid>
+
+                        <StackPanel>
+                            <!--Menu logo-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Border Width="35" Height="35" Padding="3" Background="White" CornerRadius="50" BorderThickness="3" BorderBrush="#ffffff"
+                                        DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="10" Opacity="0.3"/>
+                                    </Border.Effect>
+
+                                    <materialDesign:PackIcon Kind="SendOutline" Width="15" Height="15"
+                                                       Foreground="#fb7154" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center">
+
+                                        <materialDesign:PackIcon.LayoutTransform>
+                                            <RotateTransform Angle="-45"/>
+                                        </materialDesign:PackIcon.LayoutTransform>
+                                    </materialDesign:PackIcon>
+                                </Border>
+
+                                <TextBlock Text="Quản lý cửa hàng" 
+                                           Style="{StaticResource Resource_TextBlock}" 
+                                           Margin="10"/>
+                            </StackPanel>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Tên nhân viên-->
+                                <TextBlock Grid.Row="0" HorizontalAlignment="Left" Text="Main" Style="{StaticResource Resource_TextBlock}" FontSize="8" Foreground="LightGray" Margin="30 30 0 0"/>
+                                <!--Lần gạch-->
+                                <Separator Grid.Row="1" Height="0.6" Background="#D3D8E3"/>
+                                <!--Menu button-->
+                                <StackPanel Grid.Row="2">
+
+                                    <Button x:Name="Button_menu" Style="{StaticResource Button_Dashboard}" Uid="0" Click="Button_menu_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Home" Margin="10"/>
+                                            <TextBlock Text="Quản Lý" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource Button_Dashboard}" Uid="1" Click="Button_menu_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>
+                                            <TextBlock Text="Bán Hàng" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource Button_Dashboard}" Uid="2" Click="Button_menu_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="10"/>
+                                            <TextBlock Text="Khách Hàng" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource Button_Dashboard}" Uid="3" Click="Button_menu_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="CalendarLockOutline" Margin="10"/>
+                                            <TextBlock Text="Thống Kê" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="3" Margin="0 0 0 20">
+                                    <Button Style="{StaticResource Button_Dashboard}" VerticalAlignment="Bottom" Uid="4" Click="Button_menu_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Logout" Margin="10"/>
+                                            <TextBlock Text="Đăng xuất" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card Background="#5685F0" Grid.Column="0" Width="250" Height="130" UniformCornerRadius="15">
+
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Background="#5685F0" Grid.Column="1" Width="250" Height="130" UniformCornerRadius="15">
+
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Background="#5685F0" Grid.Column="2" Width="250" Height="130" UniformCornerRadius="15">
+
+                    </materialDesign:Card>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Name="GridMain">
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </Border>
 </Window>
