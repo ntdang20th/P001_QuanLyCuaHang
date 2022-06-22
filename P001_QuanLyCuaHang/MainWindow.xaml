@@ -14,6 +14,6 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
     <Grid>
-       
+        <TextBlock Text="demo voi cmd"/>
     </Grid>
 </Window>
