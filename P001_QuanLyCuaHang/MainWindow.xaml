@@ -16,5 +16,7 @@
     <Grid>
         <TextBlock Text="demo voi cmd"/>
         <TextBlock Text="testchanged"/>
+        
+        //day cung them moi
     </Grid>
 </Window>
