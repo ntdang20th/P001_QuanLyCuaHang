@@ -14,13 +14,6 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock Text="demo voi cmd"/>
-        <TextBlock Text="ky` them"/>
-        <TextBlock Text="ky` them"/>
-        <TextBlock Text="ky` them"/>
-        <TextBlock Text="ky` them"/>
-        <TextBlock Text="ky` them"/>
-
-            <TextBlock Text="dang them"/>
+        
     </Grid>
 </Window>
