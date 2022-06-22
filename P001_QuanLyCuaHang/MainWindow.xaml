@@ -18,5 +18,7 @@
         <TextBlock Text="commit"/>
         <TextBlock Text="commit"/>
         <TextBlock Text="commit"/>
+        <TextBlock Text="add changed t"/>
+        
     </Grid>
 </Window>
