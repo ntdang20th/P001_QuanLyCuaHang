@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ba54d77c7634eca984ba1b7e16ba667" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.ChiTietHDB" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.ChiTietHDN" Width="1.5" PointX="8.25" PointY="2.75" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.DonViTinh" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.Hang" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.HoaDonBan" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.HoaDonNhap" Width="1.5" PointX="6" PointY="11" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.KhachHang" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="P001_QuanLyCuaHangModel.NhaCungCap" Width="1.5" PointX="3.75" PointY="10.75" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHan__37A5467C" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHDB__36B12243" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHan__30F848ED" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHDN__300424B4" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__Hang__IdDVT__267ABA7A" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__HoaDonBan__Makh__33D4B598" />
+        <AssociationConnector Association="P001_QuanLyCuaHangModel.FK__HoaDonNha__IdNCC__2D27B809" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
