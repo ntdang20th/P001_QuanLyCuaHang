@@ -13,12 +13,10 @@
 
 
                 <ResourceDictionary Source="Themes/ButtonChucNang.xaml"/>
-<<<<<<< HEAD
                 <ResourceDictionary Source="Themes/Resource_TextBlock.xaml"/>
                 <ResourceDictionary Source="Themes/Button_Dashboard.xaml"/>
                 <ResourceDictionary Source="Themes/tabMenuQuanLy.xaml"/>
-=======
->>>>>>> 2b39c2cb66e118d5fc9f7daaca0a79b33d3e88c7
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

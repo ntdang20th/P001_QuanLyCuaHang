@@ -11,23 +11,22 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="MainWindow" Height="720" Width="1080">
-    <Border Background="#EEF0F5" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="#EEF0F5" CornerRadius="5" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
                 <!--Dashboard bên trái-->
-                <Border Grid.Row="1" Background="#303744" CornerRadius="30" Margin="10">
-
+                <Border Grid.Row="1" Background="#303744" CornerRadius="5,0,0,5">
                     <Grid>
-
                         <StackPanel>
                             <!--Menu logo-->
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Border Width="35" Height="35" Padding="3" Background="White" CornerRadius="50" BorderThickness="3" BorderBrush="#ffffff"
+                                <Border Width="35" Height="35" Padding="3" Background="White" 
+                                        CornerRadius="5" BorderThickness="3" BorderBrush="#ffffff"
                                         DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0 10 0 0">
                                     <Border.Effect>
                                         <DropShadowEffect BlurRadius="10" Opacity="0.3"/>
@@ -110,37 +109,6 @@
             </Grid>
 
             <Grid Grid.Column="1">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0" Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <materialDesign:Card Background="#5685F0" Grid.Column="0" Width="250" Height="130" UniformCornerRadius="15">
-
-                    </materialDesign:Card>
-
-                    <materialDesign:Card Background="#5685F0" Grid.Column="1" Width="250" Height="130" UniformCornerRadius="15">
-
-                    </materialDesign:Card>
-
-                    <materialDesign:Card Background="#5685F0" Grid.Column="2" Width="250" Height="130" UniformCornerRadius="15">
-
-                    </materialDesign:Card>
-
-                </Grid>
-
-                <Grid Grid.Row="1" Name="GridMain">
-
-                </Grid>
-
             </Grid>
 
         </Grid>
