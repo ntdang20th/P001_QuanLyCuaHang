@@ -13,18 +13,83 @@
     </UserControl.DataContext>
     
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:0.5}">
-        <Border Background="White" CornerRadius="0 0 5 0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-                <Button Grid.Column="3" Background="Transparent" 
-                        VerticalAlignment="Top"
+            <materialDesign:Card  Grid.Row="0"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="White"
+                                  UniformCornerRadius="5"
+                                  Margin="10" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox  materialDesign:HintAssist.Hint="ID"
+                              Text="{Binding SelectedNhaCungCap.Id}"
+                            Grid.Row="0" Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            Width="200"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            VerticalAlignment="Center" />
+
+                    <TextBox  materialDesign:HintAssist.Hint="Tên NCC"
+                              Text="{Binding Ten}"
+                            Grid.Row="1" Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            Width="200"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            VerticalAlignment="Center" />
+
+
+                    <TextBox  materialDesign:HintAssist.Hint="Email"
+                              Text="{Binding Email}"
+                                Grid.Row="1" Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                Width="200"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                VerticalAlignment="Center" />
+
+                    <TextBox  materialDesign:HintAssist.Hint="Số điện thoại"
+                              Text="{Binding Sdt}"
+                                Grid.Row="1" Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                Width="200"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                VerticalAlignment="Center" />
+
+                    <TextBox  materialDesign:HintAssist.Hint="Địa chỉ"
+                              Text="{Binding DiaChi}"
+                                Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                HorizontalAlignment="Left"
+                                MinWidth="535"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                VerticalAlignment="Center" />
+                </Grid>
+            </materialDesign:Card>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Background="Transparent" 
+                        VerticalAlignment="Top" Margin="10 10"
                         HorizontalAlignment="Left"
-                        
                         BorderThickness="0" Padding="0"
                         Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
                     <materialDesign:PackIcon Kind="ArrowLeft" 
@@ -33,133 +98,43 @@
                                              VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
 
-                <materialDesign:Card Grid.Row="0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <TextBox  materialDesign:HintAssist.Hint="Mã khách hàng"
-                                  Name="txtMaKhachHang"
-                                  Grid.Row="0"
-                                  HorizontalAlignment="Center"
-                                  Width="200"
-                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                  VerticalAlignment="Center" />
-
-                            <TextBox  materialDesign:HintAssist.Hint="Tên khách hàng"
-                                  Name="txtGia"
-                                  Grid.Row="1"
-                                  HorizontalAlignment="Center"
-                                  Width="200"
-                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                  VerticalAlignment="Center" />
-
-                        </Grid>
-
-                        <Grid Grid.Column="1">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0" Width="200" Margin="0 10 0 0">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock Text="Giới tính" Margin="5"/>
-                                    <RadioButton x:Name="rdbNam" Content="Nam" Margin="5"/>
-                                    <RadioButton x:Name="rdbNu" Content="Nữ" Margin="5"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <DatePicker Grid.Column="1" Grid.Row="1"
-                                    Width="200"
-                                    materialDesign:HintAssist.Hint="Ngày sinh"
-                                    materialDesign:HintAssist.Foreground="Black"
-                                    materialDesign:TextFieldAssist.UnderlineBrush="Black"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                    VerticalContentAlignment="Bottom"
-                                    SelectedDate="{Binding NgaySinh, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-
-                        </Grid>
-
-                        <Grid Grid.Column="2">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <TextBox  materialDesign:HintAssist.Hint="Dịa chỉ"
-                                  Name="txtDiaChi"
-                                  Grid.Row="0"
-                                  HorizontalAlignment="Center"
-                                  Width="200"
-                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                  VerticalAlignment="Center" />
-
-                            <TextBox  materialDesign:HintAssist.Hint="Số điện thoại"
-                                  Name="txtGiaBan"
-                                  Grid.Row="1"
-                                  HorizontalAlignment="Center"
-                                  Width="200"
-                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                  VerticalAlignment="Center" />
-                        </Grid>
-                    </Grid>
-                    
-                </materialDesign:Card>
-
-                <materialDesign:Card Grid.Row="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button Style="{StaticResource ButtonChucNang}"
+                <Button Style="{StaticResource ButtonChucNang}"
+                        Command="{Binding Them_Command}"
                             Content="Thêm" Width="120" HorizontalAlignment="Right" Height="40"
                             Grid.Column="0"/>
 
                         <Button Style="{StaticResource ButtonChucNang}"
+                                Command="{Binding Sua_Command}"
                             Content="Sửa" Width="120" Height="40"
                             Grid.Column="1"/>
 
                         <Button Style="{StaticResource ButtonChucNang}"
+                                Command="{Binding Xoa_Command}"
                             Content="Xóa" Width="120" HorizontalAlignment="Left" Height="40"
                             Grid.Column="2"/>
                     </Grid>
-                </materialDesign:Card>
 
                 <!--data-->
-                <materialDesign:Card Grid.Row="2">
-                    <ListView ItemsSource="{Binding ListHangHoa}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+            <materialDesign:Card  Grid.Row="2"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="White"
+                                  UniformCornerRadius="5"
+                                  Margin="10" Padding="10">
+                <ListView ItemsSource="{Binding ListNhaCungCap}" SelectedItem="{Binding SelectedNhaCungCap, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header ="Mã khách hàng" DisplayMemberBinding="{Binding MaKhachHang}"/>
-                                <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding HoTen}"/>
-                                <GridViewColumn Header ="Giới tính" DisplayMemberBinding="{Binding GioiTinh}"/>
-                                <GridViewColumn Header ="Năm sinh" DisplayMemberBinding="{Binding NamSinh}"/>
+                                <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding Ten}"/>
                                 <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"/>
-                                <GridViewColumn Header ="Số điện thoại" DisplayMemberBinding="{Binding SDT}"/>
+                                <GridViewColumn Header ="Số diện thoại" DisplayMemberBinding="{Binding Sdt}"/>
+                                <GridViewColumn Header ="Email" DisplayMemberBinding="{Binding Email}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </materialDesign:Card>
 
             </Grid>
-        </Border>
     </materialDesign:TransitioningContent>
 </UserControl>
 

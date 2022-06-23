@@ -15,7 +15,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
     public partial class ChiTietHDN
     {
         public int Id { get; set; }
-        public Nullable<int> IdHDN { get; set; }
+        public string IdHDN { get; set; }
         public Nullable<int> IdHang { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<int> DonGiaNhap { get; set; }

@@ -60,7 +60,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public NhaCungCapViewModel()
         {
-            ListNhaCungCap = new ObservableCollection<NhaCungCap>(DataProvider.Instance.DB.NhaCungCaps);
+            ListNhaCungCap = new ObservableCollection<NhaCungCap>(DataProvider.Instance.DB.NhaCungCaps.Where(x=>x.An == 0));
 
             Them_Command = new RelayCommand<object>((p) =>
             {
@@ -105,7 +105,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ncc.An = 1;
                 DataProvider.Instance.DB.SaveChanges();
                 MessageBox.Show("Đã xóa", "Thông báo");
-                ListNhaCungCap.Remove(ncc);
+                ListNhaCungCap = new ObservableCollection<NhaCungCap>(DataProvider.Instance.DB.NhaCungCaps.Where(x => x.An == 0));
             });
 
             EnterCommand = new RelayCommand<TextBox>((p) =>

@@ -25,7 +25,6 @@
                                   materialDesign:ShadowAssist.ShadowDepth="Depth1"
                                   materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
                                   Background="White"
-                                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
                     <Grid>
@@ -47,14 +46,13 @@
                                   Grid.Row="0"
                                       IsReadOnly="True"
                                   HorizontalAlignment="Center" 
-                                  Foreground="Black"
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
 
                             <TextBox  materialDesign:HintAssist.Hint="Tên hàng hóa"
                                   Text="{Binding TenHang}"
-                                  Grid.Row="1" Foreground="Black"
+                                  Grid.Row="1" 
                                   HorizontalAlignment="Center"
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -71,7 +69,7 @@
                             <ComboBox materialDesign:HintAssist.Hint="Đơn vị tính"
                                   Name="cbbDonViTinh"
                                       DisplayMemberPath="TenDonViTinh"
-                                  Grid.Row="0" Foreground="Black"
+                                  Grid.Row="0" 
                                   Width="200"
                                   ItemsSource="{Binding ListDonViTinh}"
                                   SelectedItem="{Binding SelectedDVT}"
@@ -87,7 +85,7 @@
                                   Name="txtGia"
                                       IsReadOnly="True"
                                       Text="{Binding GiaNhap}"
-                                  Grid.Row="1" Foreground="Black"
+                                  Grid.Row="1"
                                   HorizontalAlignment="Center"
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -103,7 +101,7 @@
 
                             <TextBox  materialDesign:HintAssist.Hint="Số lượng tồn"
                                   Text="{Binding Slton}"
-                                  Grid.Row="0" Foreground="Black"
+                                  Grid.Row="0" 
                                   HorizontalAlignment="Center"
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -111,7 +109,7 @@
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá bán"
                                   Text="{Binding GiaBan}"
-                                  Grid.Row="1" Foreground="Black"
+                                  Grid.Row="1" 
                                   HorizontalAlignment="Center"
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"

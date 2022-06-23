@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdHDB" Type="int" />
+          <Property Name="IdHDB" Type="varchar" MaxLength="20" />
           <Property Name="IdHang" Type="int" />
           <Property Name="SoLuong" Type="int" />
           <Property Name="DonGiaBan" Type="int" />
@@ -21,7 +21,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdHDN" Type="int" />
+          <Property Name="IdHDN" Type="varchar" MaxLength="20" />
           <Property Name="IdHang" Type="int" />
           <Property Name="SoLuong" Type="int" />
           <Property Name="DonGiaNhap" Type="int" />
@@ -46,17 +46,17 @@
         </EntityType>
         <EntityType Name="HoaDonBan">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SoHD" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoHD" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NgayBan" Type="date" />
           <Property Name="Makh" Type="int" />
         </EntityType>
         <EntityType Name="HoaDonNhap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SoHD" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoHD" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NgayNhap" Type="date" />
           <Property Name="IdNCC" Type="int" />
         </EntityType>
@@ -65,8 +65,7 @@
             <PropertyRef Name="MaKh" />
           </Key>
           <Property Name="MaKh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HoLot" Type="nvarchar" MaxLength="100" />
-          <Property Name="Ten" Type="nvarchar" MaxLength="100" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="200" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" />
           <Property Name="NamSinh" Type="date" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
@@ -113,7 +112,7 @@
           <End Role="ChiTietHDB" Type="Self.ChiTietHDB" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDonBan">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SoHD" />
             </Principal>
             <Dependent Role="ChiTietHDB">
               <PropertyRef Name="IdHDB" />
@@ -125,7 +124,7 @@
           <End Role="ChiTietHDN" Type="Self.ChiTietHDN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDonNhap">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SoHD" />
             </Principal>
             <Dependent Role="ChiTietHDN">
               <PropertyRef Name="IdHDN" />
@@ -253,7 +252,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdHDB" Type="Int32" />
+          <Property Name="IdHDB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdHang" Type="Int32" />
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="DonGiaBan" Type="Int32" />
@@ -266,7 +265,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdHDN" Type="Int32" />
+          <Property Name="IdHDN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdHang" Type="Int32" />
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="DonGiaNhap" Type="Int32" />
@@ -297,9 +296,9 @@
         </EntityType>
         <EntityType Name="HoaDonBan">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SoHD" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoHD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NgayBan" Type="DateTime" Precision="0" />
           <Property Name="Makh" Type="Int32" />
           <NavigationProperty Name="ChiTietHDBs" Relationship="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHDB__36B12243" FromRole="HoaDonBan" ToRole="ChiTietHDB" />
@@ -307,9 +306,9 @@
         </EntityType>
         <EntityType Name="HoaDonNhap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SoHD" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoHD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NgayNhap" Type="DateTime" Precision="0" />
           <Property Name="IdNCC" Type="Int32" />
           <NavigationProperty Name="ChiTietHDNs" Relationship="P001_QuanLyCuaHangModel.FK__ChiTietHD__IdHDN__300424B4" FromRole="HoaDonNhap" ToRole="ChiTietHDN" />
@@ -320,8 +319,7 @@
             <PropertyRef Name="MaKh" />
           </Key>
           <Property Name="MaKh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoLot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="NamSinh" Type="DateTime" Precision="0" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -358,7 +356,7 @@
           <End Type="P001_QuanLyCuaHangModel.ChiTietHDB" Role="ChiTietHDB" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDonBan">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SoHD" />
             </Principal>
             <Dependent Role="ChiTietHDB">
               <PropertyRef Name="IdHDB" />
@@ -382,7 +380,7 @@
           <End Type="P001_QuanLyCuaHangModel.ChiTietHDN" Role="ChiTietHDN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDonNhap">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SoHD" />
             </Principal>
             <Dependent Role="ChiTietHDN">
               <PropertyRef Name="IdHDN" />
@@ -425,7 +423,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -479,7 +477,7 @@
               <MappingFragment StoreEntitySet="HoaDonBan">
                 <ScalarProperty Name="Makh" ColumnName="Makh" />
                 <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SoHD" ColumnName="SoHD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -488,7 +486,7 @@
               <MappingFragment StoreEntitySet="HoaDonNhap">
                 <ScalarProperty Name="IdNCC" ColumnName="IdNCC" />
                 <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SoHD" ColumnName="SoHD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -500,8 +498,7 @@
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="HoLot" ColumnName="HoLot" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="MaKh" ColumnName="MaKh" />
               </MappingFragment>
             </EntityTypeMapping>

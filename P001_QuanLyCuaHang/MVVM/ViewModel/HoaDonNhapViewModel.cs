@@ -21,7 +21,16 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         #region Properties
         private HoaDonNhap _HDN;
-        public HoaDonNhap HDN { get=>_HDN; set { _HDN = value; OnPropertyChanged(); } }
+        public HoaDonNhap HDN { get=>_HDN; set 
+            { 
+                _HDN = value; 
+                OnPropertyChanged();
+                DateString = "Ngày " + DateTime.Today.Day + " tháng " + DateTime.Today.Month + " năm " + DateTime.Today.Year;
+            } 
+        }
+
+        public ChiTietHDN _CTHD;
+        public ChiTietHDN CTHD { get => _CTHD; set { _CTHD = value; OnPropertyChanged(); } }
 
         public ObservableCollection<ChiTietHDN> _ListCTHDN;
         public ObservableCollection<ChiTietHDN> ListCTHDN { get => _ListCTHDN; set { _ListCTHDN = value; OnPropertyChanged(); } }
@@ -29,9 +38,6 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public string _Ten = "";
         public string Ten { get => _Ten; set { _Ten = value; OnPropertyChanged(); } }
-
-        public int _GiaBan = 0;
-        public int GiaBan { get => _GiaBan; set { _GiaBan = value; OnPropertyChanged(); } }
 
         public int _SoLuongTon = 0;
         public int SoLuongTon { get => _SoLuongTon; set { _SoLuongTon = value; OnPropertyChanged(); } }
@@ -61,21 +67,29 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             } 
         }
 
-        public int _KhuyenMai = 0;
-        public int KhuyenMai { get => _KhuyenMai; 
-            set 
-            { 
-                _KhuyenMai = value; 
-                OnPropertyChanged();
-                TinhThanhTien();
-            } 
-        }
+        public int _GiaNhap = 0;
+        public int GiaNhap { get => _GiaNhap; set { _GiaNhap = value; OnPropertyChanged(); TinhThanhTien(); } }
 
         public string _TienGiam = "";
         public string TienGiam { get => _TienGiam; set { _TienGiam = value; OnPropertyChanged(); } }
 
         public int _ThanhTien = 0;
         public int ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
+
+
+
+        //hoadon
+        public string _SoHD= "";
+        public string SoHD { get => _SoHD; set { _SoHD = value; OnPropertyChanged(); } }
+
+        public string _DateString = "";
+        public string DateString { get => _DateString; set { _DateString = value; OnPropertyChanged(); } }
+
+        public int _ThanhTienBangSo = 0;
+        public int ThanhTienBangSo { get => _ThanhTienBangSo; set { _ThanhTienBangSo = value; OnPropertyChanged(); } }
+
+        public string _ThanhTienBangChu = "";
+        public string ThanhTienBangChu { get => _ThanhTienBangChu; set { _ThanhTienBangChu = value; OnPropertyChanged(); } }
         #endregion
 
         #region Selected Item
@@ -88,17 +102,18 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 if (SelectedHang != null)
                 {
                     Ten = SelectedHang.TenHang;
-                    GiaBan = (int)SelectedHang.GiaBan;
                     SoLuongTon = (int)SelectedHang.SoLuongTon;
                     SoLuong = 0;
-                    KhuyenMai = 0;
-                    TienGiam = "";
+                    GiaNhap = 0;
                 }
             }
         }
 
         private NhaCungCap _SelectedNCC;
         public NhaCungCap SelectedNCC { get => _SelectedNCC; set { _SelectedNCC = value;OnPropertyChanged(); } }
+
+        private ChiTietHDN _SelectedCTHD;
+        public ChiTietHDN SelectedCTHD { get => _SelectedCTHD; set { _SelectedCTHD = value; OnPropertyChanged(); } }
 
         #endregion
 
@@ -120,7 +135,9 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             ThemHD_Command = new RelayCommand<object>((p) =>
             {
-                return !DangNhap;
+                if (DangNhap || SelectedNCC == null)
+                    return false;
+                return true;
             }, (p) =>
             {
                 // bat cac nut khac
@@ -128,16 +145,31 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
 
                 //them hoa don
-
+                HDN = new HoaDonNhap() {SoHD = SoHD = CreateID(), NgayNhap = DateTime.Now, IdNCC = SelectedNCC.Id };
+                DataProvider.Instance.DB.HoaDonNhaps.Add(HDN);
+                DataProvider.Instance.DB.SaveChanges();
+                ListCTHDN = new ObservableCollection<ChiTietHDN>();
             });
 
             ThemSP_Command = new RelayCommand<object>((p) =>
             {
-                return DangNhap;
+                if (!DangNhap || SelectedHang == null || GiaNhap == 0)
+                    return false;
+                return true;
             }, (p) =>
-            { 
+            {
+                //them sp
+                CTHD = new ChiTietHDN() { IdHDN = HDN.SoHD, IdHang = SelectedHang.Id, SoLuong = SoLuong, DonGiaNhap = GiaNhap};
+                DataProvider.Instance.DB.ChiTietHDNs.Add(CTHD);
+                DataProvider.Instance.DB.SaveChanges();
+                ListCTHDN.Add(CTHD);
 
-                //them hoa don
+                //add vaof kho
+                var hang = DataProvider.Instance.DB.Hangs.Where(x => x.Id == SelectedHang.Id).SingleOrDefault();
+                hang.SoLuongTon = hang.SoLuongTon + SoLuong;
+                DataProvider.Instance.DB.SaveChanges();
+
+                TinhThanhTienBangSo();
             });
 
             HuyHD_Command = new RelayCommand<object>((p) =>
@@ -145,18 +177,43 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 return DangNhap;
             }, (p) =>
             {
+                // bat cac nut khac
+                DangNhap = !DangNhap;
 
 
-                //them hoa don
+                //hoan tac listcthd
+                DataProvider.Instance.DB.ChiTietHDNs.RemoveRange(DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == HDN.SoHD));
+                DataProvider.Instance.DB.SaveChanges();
+
+                //xoa hoa don
+                DataProvider.Instance.DB.HoaDonNhaps.Remove(HDN);
+                DataProvider.Instance.DB.SaveChanges();
+
+                //reset form
+                SoLuong = 0;
+                GiaNhap = 0;
+                SoHD = "";
+                SelectedNCC = null;
+                HDN = null;
+                CTHD = null;
+                ListCTHDN = null;
+                ThanhTienBangSo = 0;
+                ThanhTienBangChu = "";
+                DateString = "";
+                SelectedHang = null;
             });
 
             XoaSP_Command = new RelayCommand<object>((p) =>
             {
-                return DangNhap;
+                if (!DangNhap || SelectedCTHD == null )
+                    return false;
+                return true;
             }, (p) =>
             {
-
-                //them hoa don
+                ChiTietHDN x = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.Id == SelectedCTHD.Id).SingleOrDefault();
+                DataProvider.Instance.DB.ChiTietHDNs.Remove(x);
+                DataProvider.Instance.DB.SaveChanges();
+                ListCTHDN.Remove(x);
             });
 
             LuuHD_Command = new RelayCommand<object>((p) =>
@@ -168,7 +225,18 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 DangNhap = !DangNhap;
 
 
-                //them hoa don
+                //reset form
+                SoLuong = 0;
+                GiaNhap = 0;
+                SoHD = "";
+                SelectedNCC = null;
+                HDN = null;
+                CTHD = null;
+                ListCTHDN = null;
+                ThanhTienBangSo = 0;
+                ThanhTienBangChu = "";
+                DateString = "";
+                SelectedHang = null;
             });
 
             InHD_Command = new RelayCommand<object>((p) =>
@@ -186,14 +254,32 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         #region Method
         void TinhThanhTien()
         {
-            if (SoLuong == 0 || KhuyenMai == 0 || GiaBan == 0)
+            if (SoLuong == 0  || GiaNhap == 0)
             {
                 ThanhTien = 0;
                 return;
             }
-            int km = SoLuong * GiaBan * KhuyenMai / 100;
-            ThanhTien = SoLuong * GiaBan - km;
-            TienGiam = "( -" + km + ")";
+            ThanhTien = SoLuong * GiaNhap;
+        }
+
+        string CreateID()
+        {
+            DateTime today = DateTime.Today;
+            int count = DataProvider.Instance.DB.HoaDonNhaps.Where(x => x.NgayNhap == today).Count();
+
+            string t = "00000" + (count+1);
+            t = t.Substring(t.Length - 5, 5);
+
+            return "HDB_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+        }
+
+        void TinhThanhTienBangSo()
+        {
+            ThanhTienBangSo = 0;
+            foreach(ChiTietHDN i in ListCTHDN)
+            {
+                ThanhTienBangSo += (int)(i.SoLuong * i.DonGiaNhap);
+            }
         }
         #endregion
     }

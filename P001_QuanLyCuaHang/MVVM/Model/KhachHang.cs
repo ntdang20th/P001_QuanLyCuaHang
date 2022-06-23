@@ -13,8 +13,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         }
 
         private int _MaKh;
-        private string _HoLot;
-        private string _Ten;
+        private string _HoTen;
         private string _GioiTinh;
         private Nullable<System.DateTime> _NamSinh;
         private string _DiaChi;
@@ -23,8 +22,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
 
 
         public int MaKh { get => _MaKh; set { _MaKh = value; OnPropertyChanged(); } }
-        public string HoLot { get => _HoLot; set { _HoLot = value; OnPropertyChanged(); } }
-        public string Ten { get => _Ten; set { _Ten = value; OnPropertyChanged(); } }
+        public string HoTen { get => _HoTen; set { _HoTen = value; OnPropertyChanged(); } }
         public string GioiTinh { get => _GioiTinh; set { _GioiTinh = value; OnPropertyChanged(); } }
         public Nullable<System.DateTime> NamSinh { get => _NamSinh; set { _NamSinh = value; OnPropertyChanged(); } }
         public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
@@ -32,7 +30,9 @@ namespace P001_QuanLyCuaHang.MVVM.Model
 
         public Nullable<int> An { get => _An; set { _An = value; OnPropertyChanged(); } }
 
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonBan> HoaDonBans { get; set; }
     }
 }
+

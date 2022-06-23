@@ -19,11 +19,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         #endregion
 
         #region Properties
-        public string _HoLot = "";
-        public string HoLot { get => _HoLot; set { _HoLot = value; OnPropertyChanged(); } }
-
-        public string _Ten = "";
-        public string Ten { get => _Ten; set { _Ten = value; OnPropertyChanged(); } }
+        public string _HoTen = "";
+        public string HoTen { get => _HoTen; set { _HoTen = value; OnPropertyChanged(); } }
 
         public string _GioiTinh = "";
         public string GioiTinh { get => _GioiTinh; set { _GioiTinh = value; OnPropertyChanged(); } }
@@ -54,8 +51,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 _SelectedKhachHang = value; OnPropertyChanged();
                 if (SelectedKhachHang != null)
                 {
-                    HoLot = SelectedKhachHang.HoLot;
-                    Ten = SelectedKhachHang.Ten;
+                    HoTen = SelectedKhachHang.HoTen;
                     
                     GioiTinh = SelectedKhachHang.GioiTinh;
                     CheckNam = GioiTinh == "Nam" ? true : false;
@@ -79,18 +75,18 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public KhachHangViewModel()
         {
-            ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs);
+            ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(x=>x.An==0));
 
             Them_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(HoLot) || String.IsNullOrEmpty(Ten))
+                if (String.IsNullOrEmpty(HoTen))
                     return false;
 
                 return true;
             }, (p) =>
             {
                 GioiTinh = CheckNam ? "Nam" : "Nữ";
-                var kh = new KhachHang() { HoLot = HoLot, Ten = Ten, GioiTinh = GioiTinh, NamSinh = NamSinh, DiaChi = DiaChi, Sdt = Sdt, An = 0 };
+                var kh = new KhachHang() { HoTen = HoTen, GioiTinh = GioiTinh, NamSinh = NamSinh, DiaChi = DiaChi, Sdt = Sdt, An = 0 };
 
                 DataProvider.Instance.DB.KhachHangs.Add(kh);
                 DataProvider.Instance.DB.SaveChanges();
@@ -100,22 +96,20 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(HoLot) || String.IsNullOrEmpty(Ten))
+                if (String.IsNullOrEmpty(HoTen))
                     return false;
 
                 return true;
             }, (p) =>
             {
                 var khCu = DataProvider.Instance.DB.KhachHangs.Where(t => t.MaKh == SelectedKhachHang.MaKh).SingleOrDefault();
-                khCu.HoLot = HoLot;
-                khCu.Ten = Ten;
+                khCu.HoTen = HoTen;
                 khCu.GioiTinh = GioiTinh;
                 khCu.NamSinh = NamSinh;
                 khCu.DiaChi = DiaChi;
                 khCu.Sdt = Sdt;
                 DataProvider.Instance.DB.SaveChanges();
                 MessageBox.Show("Đã sửa", "Thông báo");
-                //SelectedItem.TenKhachHang = DisplayName;
             });
 
             Xoa_Command = new RelayCommand<object>((p) =>
@@ -129,7 +123,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 khCu.An = 1;
                 DataProvider.Instance.DB.SaveChanges();
                 MessageBox.Show("Đã xóa", "Thông báo");
-                ListKhachHang.Remove(khCu);
+                ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(x => x.An == 0));
             });
 
             EnterCommand = new RelayCommand<TextBox>((p) =>
@@ -137,7 +131,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 return true;
             }, (p) =>
             {
-                ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(t => t.Ten.Contains(p.Text)).ToList());
+                ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(t => t.HoTen.Contains(p.Text)).ToList());
             });
         }
     }

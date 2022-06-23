@@ -20,7 +20,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
             this.ChiTietHDBs = new HashSet<ChiTietHDB>();
         }
     
-        public int Id { get; set; }
+        public string SoHD { get; set; }
         public Nullable<System.DateTime> NgayBan { get; set; }
         public Nullable<int> Makh { get; set; }
     

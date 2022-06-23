@@ -29,3 +29,4 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; set; }
     }
 }
+

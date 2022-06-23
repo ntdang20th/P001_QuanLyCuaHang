@@ -20,20 +20,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 
-                <Button Grid.Column="3" Background="Transparent" 
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Left"
-                        
-                        BorderThickness="0" Padding="0"
-                        Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
-                    <materialDesign:PackIcon Kind="ArrowLeft" 
-                                             Foreground="#3a5aa3"
-                                             Width="30" Height="30"
-                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
 
-                <materialDesign:Card Grid.Row="0">
-                    <Grid>
+            <materialDesign:Card  Grid.Row="0"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="White"
+                                  UniformCornerRadius="5"
+                                  Margin="10" Padding="10">
+                <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -56,7 +50,7 @@
                                   VerticalAlignment="Center" />
 
                         <TextBox  materialDesign:HintAssist.Hint="Tên khách hàng"
-                                  Text="{Binding Ten}"
+                                  Text="{Binding HoTen}"
                                   Grid.Row="1"
                                   HorizontalAlignment="Center"
                                   Width="200"
@@ -119,15 +113,26 @@
                     
                 </materialDesign:Card>
 
-                <materialDesign:Card Grid.Row="1">
-                    <Grid>
+               
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource ButtonChucNang}"
+                <Button Grid.Column="0" Background="Transparent" 
+                        VerticalAlignment="Top" Margin="10 10"
+                        HorizontalAlignment="Left"
+                        BorderThickness="0" Padding="0"
+                        Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                    <materialDesign:PackIcon Kind="ArrowLeft" 
+                                             Foreground="#3a5aa3"
+                                             Width="30" Height="30"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+
+                <Button Style="{StaticResource ButtonChucNang}"
                             Command="{Binding Them_Command}"
                             Grid.Column="0" Width="120"
                             HorizontalAlignment="Right"
@@ -138,29 +143,29 @@
                             Grid.Column="1" Width="120"
                             Content="Sửa"/>
 
-                    <Button Style="{StaticResource ButtonChucNang}"
+                <Button Style="{StaticResource ButtonChucNang}"
                             Command="{Binding Xoa_Command}"
                             Grid.Column="2" Width="120"
                             HorizontalAlignment="Left"
                             Content="Xóa"/>
-
-                        <Button Style="{StaticResource ButtonChucNang}"
-                            Content="Xóa" Width="120" HorizontalAlignment="Left" Height="40"
-                            Grid.Column="2"/>
-                    </Grid>
-                </materialDesign:Card>
+            </Grid>
 
                 <!--data-->
-                <materialDesign:Card Grid.Row="2">
-                    <ListView ItemsSource="{Binding ListHangHoa}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+            <materialDesign:Card  Grid.Row="2"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="White"
+                                  UniformCornerRadius="5"
+                                  Margin="10" Padding="10">
+                <ListView ItemsSource="{Binding ListKhachHang}" SelectedItem="{Binding SelectedKhachHang, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header ="Mã khách hàng" DisplayMemberBinding="{Binding MaKhachHang}"/>
+                                <GridViewColumn Header ="Mã khách hàng" DisplayMemberBinding="{Binding MaKh}"/>
                                 <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding HoTen}"/>
                                 <GridViewColumn Header ="Giới tính" DisplayMemberBinding="{Binding GioiTinh}"/>
                                 <GridViewColumn Header ="Năm sinh" DisplayMemberBinding="{Binding NamSinh}"/>
                                 <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"/>
-                                <GridViewColumn Header ="Số điện thoại" DisplayMemberBinding="{Binding SDT}"/>
+                                <GridViewColumn Header ="Số điện thoại" DisplayMemberBinding="{Binding Sdt}"/>
                             </GridView>
                         </ListView.View>
 
