@@ -1,4 +1,5 @@
-﻿using P001_QuanLyCuaHang.MVVM.Model;
+﻿using P001_QuanLyCuaHang.Functions;
+using P001_QuanLyCuaHang.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -180,10 +181,19 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 // bat cac nut khac
                 DangNhap = !DangNhap;
 
+                //+ trong kho
+                foreach (ChiTietHDN i in ListCTHDN)
+                {
+                    var x = DataProvider.Instance.DB.Hangs.Where(t => t.Id == i.IdHang).SingleOrDefault();
+                    x.SoLuongTon -= i.SoLuong;
+                    DataProvider.Instance.DB.SaveChanges();
+                }
 
                 //hoan tac listcthd
                 DataProvider.Instance.DB.ChiTietHDNs.RemoveRange(DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == HDN.SoHD));
                 DataProvider.Instance.DB.SaveChanges();
+
+                
 
                 //xoa hoa don
                 DataProvider.Instance.DB.HoaDonNhaps.Remove(HDN);
@@ -210,6 +220,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 return true;
             }, (p) =>
             {
+                //- trong kho
+                var hang = DataProvider.Instance.DB.Hangs.Where(t => t.Id == SelectedCTHD.IdHang).SingleOrDefault();
+                hang.SoLuongTon = hang.SoLuongTon - SoLuong;
+                DataProvider.Instance.DB.SaveChanges();
+
                 ChiTietHDN x = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.Id == SelectedCTHD.Id).SingleOrDefault();
                 DataProvider.Instance.DB.ChiTietHDNs.Remove(x);
                 DataProvider.Instance.DB.SaveChanges();
@@ -280,6 +295,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             {
                 ThanhTienBangSo += (int)(i.SoLuong * i.DonGiaNhap);
             }
+            ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
         }
         #endregion
     }

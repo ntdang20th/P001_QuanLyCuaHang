@@ -12,7 +12,7 @@
         <viewModel:NhaCungCapViewModel/>
     </UserControl.DataContext>
     
-    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:0.5}">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
             <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

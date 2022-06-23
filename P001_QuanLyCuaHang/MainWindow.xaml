@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="#d3d8e3"
+        Background="Transparent"
         Title="MainWindow" Height="600" Width="1200">
 
     <Window.DataContext>
