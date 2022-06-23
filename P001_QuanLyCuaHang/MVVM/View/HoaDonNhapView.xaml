@@ -96,7 +96,7 @@
                              Margin="2 5"
                                      Text="{Binding NCCSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="Black"
-                                     VerticalContentAlignment="Bottom"
+                             VerticalContentAlignment="Bottom"
                              Padding="0"
                              Grid.Column="1"/>
 

@@ -90,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\DonViTinh_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\HangHoa_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +194,9 @@
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\NhaCungCapViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ThongKeViewModel.cs" />
+    <Compile Include="MVVM\View\DonViTinh_View.xaml.cs">
+      <DependentUpon>DonViTinh_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\HangHoa_View.xaml.cs">
       <DependentUpon>HangHoa_View.xaml</DependentUpon>
     </Compile>

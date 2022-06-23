@@ -32,19 +32,20 @@
                                              VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
 
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                <materialDesign:Card Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
+                        <Grid Grid.Column="0">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
                         <TextBox  materialDesign:HintAssist.Hint="Mã khách hàng"
                                   Text="{Binding SelectedKhachHang.MaKh}"
@@ -61,15 +62,15 @@
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
-                        
-                    </Grid>
 
-                    <Grid Grid.Column="1">
+                        </Grid>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                        <Grid Grid.Column="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" Width="200" Margin="0 10 0 0">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -79,7 +80,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <DatePicker Grid.Column="1" Grid.Row="1"
+                            <DatePicker Grid.Column="1" Grid.Row="1"
                                     Width="200"
                                     materialDesign:HintAssist.Hint="Ngày sinh"
                                     materialDesign:HintAssist.Foreground="Black"
@@ -91,12 +92,12 @@
                         
                     </Grid>
 
-                    <Grid Grid.Column="2">
+                        <Grid Grid.Column="2">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
                         <TextBox  materialDesign:HintAssist.Hint="Dịa chỉ"
                                   Text="{Binding DiaChi}"
@@ -113,15 +114,18 @@
                                   Width="200"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
+                        </Grid>
                     </Grid>
-                </Grid>
+                    
+                </materialDesign:Card>
 
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                <materialDesign:Card Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
                     <Button Style="{StaticResource ButtonChucNang}"
                             Command="{Binding Them_Command}"
@@ -140,10 +144,14 @@
                             HorizontalAlignment="Left"
                             Content="Xóa"/>
 
-                </Grid>
+                        <Button Style="{StaticResource ButtonChucNang}"
+                            Content="Xóa" Width="120" HorizontalAlignment="Left" Height="40"
+                            Grid.Column="2"/>
+                    </Grid>
+                </materialDesign:Card>
 
                 <!--data-->
-                <Grid Grid.Row="2">
+                <materialDesign:Card Grid.Row="2">
                     <ListView ItemsSource="{Binding ListHangHoa}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
@@ -157,7 +165,7 @@
                         </ListView.View>
 
                     </ListView>
-                </Grid>
+                </materialDesign:Card>
 
             </Grid>
     </materialDesign:TransitioningContent>
