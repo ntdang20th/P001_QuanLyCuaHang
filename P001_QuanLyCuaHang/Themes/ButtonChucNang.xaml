@@ -28,9 +28,12 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#4570d3"/>
-                <Setter Property="Opacity" Value="0.4"/>
+                <Setter Property="Background" Value="#5685f0"/>
                 <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="LightGray"/>
             </Trigger>
         </Style.Triggers>
     </Style>

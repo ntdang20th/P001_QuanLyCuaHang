@@ -16,11 +16,17 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         #region List
         public ObservableCollection<Hang> _ListHang;
         public ObservableCollection<Hang> ListHang { get => _ListHang; set { _ListHang = value; OnPropertyChanged(); } }
+
+        public ObservableCollection<DonViTinh> _ListDonViTinh;
+        public ObservableCollection<DonViTinh> ListDonViTinh { get => _ListDonViTinh; set { _ListDonViTinh = value; OnPropertyChanged(); } }
         #endregion
 
         #region Properties
         public string _TenHang = "";
         public string TenHang { get => _TenHang; set { _TenHang = value; OnPropertyChanged(); } }
+
+        public int _GiaNhap = 0;
+        public int GiaNhap { get => _GiaNhap; set { _GiaNhap = value; OnPropertyChanged(); } }
 
         public int _GiaBan = 0;
         public int GiaBan { get => _GiaBan; set { _GiaBan = value; OnPropertyChanged(); } }
@@ -43,6 +49,16 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                     GiaBan = (int)SelectedHang.GiaBan;
                     Slton = (int)SelectedHang.SoLuongTon;
                     SelectedDVT = DataProvider.Instance.DB.DonViTinhs.Where(x => x.Id == SelectedHang.IdDVT).SingleOrDefault();
+                    try
+                    {
+                        GiaNhap = (int)DataProvider.Instance.DB.ChiTietHDNs.Where(x => x.IdHang == SelectedHang.Id).Select(t => t.DonGiaNhap).SingleOrDefault();
+                    }
+                    catch
+                    {
+                        GiaNhap = 0;
+                    }
+                   
+                    
                 }
             }
         }
@@ -64,15 +80,17 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public HangViewModel()
         {
             ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs);
+            ListDonViTinh = new ObservableCollection<DonViTinh>(DataProvider.Instance.DB.DonViTinhs);
+
 
             Them_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(TenHang) || GiaBan==0 || Slton==0)
+                if (String.IsNullOrEmpty(TenHang) || GiaBan==0 || Slton==0 || SelectedDVT == null)
                     return false;
                 return true;
             }, (p) =>
             {
-                var dvt = new Hang() { TenHang =TenHang, GiaBan = GiaBan, SoLuongTon = Slton, Id = SelectedDVT==null?SelectedDVT.Id:0, An = 0 };
+                var dvt = new Hang() { TenHang =TenHang, GiaBan = GiaBan, SoLuongTon = Slton, IdDVT = SelectedDVT.Id, An = 0 };
 
                 DataProvider.Instance.DB.Hangs.Add(dvt);
                 DataProvider.Instance.DB.SaveChanges();

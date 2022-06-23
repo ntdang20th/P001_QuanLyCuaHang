@@ -6,8 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              mc:Ignorable="d" 
+             xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              d:DesignHeight="560" d:DesignWidth="1020" 
              Foreground="Black">
+
+    <UserControl.DataContext>
+        <viewModel:HangViewModel/>
+    </UserControl.DataContext>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -38,8 +43,9 @@
                             </Grid.RowDefinitions>
 
                             <TextBox  materialDesign:HintAssist.Hint="Mã hàng hóa"
-                                  Name="txtMaHangHoa"
+                                  Text="{Binding SelectedHang.Id}"
                                   Grid.Row="0"
+                                      IsReadOnly="True"
                                   HorizontalAlignment="Center" 
                                   Foreground="Black"
                                   Width="200"
@@ -47,7 +53,7 @@
                                   VerticalAlignment="Center" />
 
                             <TextBox  materialDesign:HintAssist.Hint="Tên hàng hóa"
-                                  Name="txtTenHangHoa"
+                                  Text="{Binding TenHang}"
                                   Grid.Row="1" Foreground="Black"
                                   HorizontalAlignment="Center"
                                   Width="200"
@@ -64,9 +70,11 @@
 
                             <ComboBox materialDesign:HintAssist.Hint="Đơn vị tính"
                                   Name="cbbDonViTinh"
+                                      DisplayMemberPath="TenDonViTinh"
                                   Grid.Row="0" Foreground="Black"
                                   Width="200"
-                                  ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                  ItemsSource="{Binding ListDonViTinh}"
+                                  SelectedItem="{Binding SelectedDVT}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -75,8 +83,10 @@
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
 
-                            <TextBox  materialDesign:HintAssist.Hint="Giá"
+                            <TextBox  materialDesign:HintAssist.Hint="Giá nhập"
                                   Name="txtGia"
+                                      IsReadOnly="True"
+                                      Text="{Binding GiaNhap}"
                                   Grid.Row="1" Foreground="Black"
                                   HorizontalAlignment="Center"
                                   Width="200"
@@ -92,7 +102,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBox  materialDesign:HintAssist.Hint="Số lượng tồn"
-                                  Name="txtSoLuongTon"
+                                  Text="{Binding Slton}"
                                   Grid.Row="0" Foreground="Black"
                                   HorizontalAlignment="Center"
                                   Width="200"
@@ -100,7 +110,7 @@
                                   VerticalAlignment="Center" />
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá bán"
-                                  Name="txtGiaBan"
+                                  Text="{Binding GiaBan}"
                                   Grid.Row="1" Foreground="Black"
                                   HorizontalAlignment="Center"
                                   Width="200"
@@ -117,16 +127,21 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Style="{StaticResource ButtonChucNang}"
-                            Content="Thêm" Width="120" HorizontalAlignment="Right"
-                            Grid.Column="0"/>
+                            Content="Thêm" Width="120" 
+                            HorizontalAlignment="Right"
+                            Grid.Column="0"
+                            Command="{Binding Them_Command}"/>
 
                     <Button Style="{StaticResource ButtonChucNang}"
                             Content="Sửa" Width="120"
-                            Grid.Column="1"/>
+                            Grid.Column="1"
+                            Command="{Binding Sua_Command}"/>
 
                     <Button Style="{StaticResource ButtonChucNang}"
-                            Content="Xóa" Width="120" HorizontalAlignment="Left"
-                            Grid.Column="2"/>
+                            Content="Xóa" Width="120" 
+                            HorizontalAlignment="Left"
+                            Grid.Column="2"
+                            Command="{Binding Xoa_Command}"/>
 
                 </Grid>
 
@@ -139,13 +154,12 @@
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
                     <Grid Grid.Row="2">
-                        <ListView ItemsSource="{Binding ListHangHoa}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListHang}" SelectedItem="{Binding SelectedHang, Mode=OneWayToSource}" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="Mã hàng hóa" DisplayMemberBinding="{Binding MaHangHoa}"/>
-                                    <GridViewColumn Header ="Tên hàng hóa" DisplayMemberBinding="{Binding TenHangHoa}"/>
-                                    <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh}"/>
-                                    <GridViewColumn Header ="Giá" DisplayMemberBinding="{Binding Gia}"/>
+                                    <GridViewColumn Header ="Mã hàng hóa" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header ="Tên hàng hóa" DisplayMemberBinding="{Binding TenHang}"/>
+                                    <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
                                     <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
                                     <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
                                 </GridView>

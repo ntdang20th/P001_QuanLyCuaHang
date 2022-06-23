@@ -6,6 +6,8 @@
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
@@ -20,7 +22,8 @@
                 <ResourceDictionary Source="Themes/tabMenuQuanLy.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
-
+            
+            
 
             <DataTemplate DataType="{x:Type viewModel:HangViewModel}">
                 <view:HangHoa_View/>

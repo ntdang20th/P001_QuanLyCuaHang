@@ -37,7 +37,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public string _Sdt = "";
         public string Sdt { get => _Sdt; set { _Sdt = value; OnPropertyChanged(); } }
 
-        public bool _CheckNam;
+        public bool _CheckNam = true;
         public bool CheckNam { get => _CheckNam; set { _CheckNam = value; OnPropertyChanged(); } }
 
         public bool _CheckNu;

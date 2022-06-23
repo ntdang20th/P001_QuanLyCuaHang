@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              mc:Ignorable="d" 
@@ -19,7 +20,7 @@
 
     <materialDesign:Transitioner SelectedIndex="0" 
                                  AutoApplyTransitionOrigins="True">
-        <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.7}">
+        <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.6*"/>
@@ -47,22 +48,28 @@
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" 
                         Style="{StaticResource ButtonChucNang}"
-                        Content="Thêm HD"/>
+                        Content="Thêm HD"
+                                Command="{Binding ThemHD_Command}"/>
                         <Button Grid.Column="1"
                         Style="{StaticResource ButtonChucNang}"
-                        Content="Thêm SP"/>
+                        Content="Thêm SP"
+                                Command="{Binding ThemSP_Command}"/>
                         <Button Grid.Column="2"
                         Style="{StaticResource ButtonChucNang}"
-                        Content="Lưu HD"/>
+                        Content="Lưu HD"
+                                Command="{Binding LuuHD_Command}"/>
                         <Button Grid.Column="3"
                         Style="{StaticResource ButtonChucNang}"
-                        Content="Xóa SP"/>
+                        Content="Xóa SP"
+                                Command="{Binding XoaSP_Command}"/>
                         <Button Grid.Column="4"
                         Style="{StaticResource ButtonChucNang}"
-                        Content="Hủy HD"/>
+                        Content="Hủy HD"
+                                Command="{Binding HuyHD_Command}"/>
                         <Button Grid.Column="5"
                         Style="{StaticResource ButtonChucNang}"
-                        Content="In HD"/>
+                        Content="In HD"
+                                Command="{Binding InHD_Command}"/>
                     </Grid>
                     <!--Nhà cung cấp-->
                     <materialDesign:Card  Grid.Row="1"
@@ -87,18 +94,19 @@
                             <TextBox materialDesign:HintAssist.Hint="Nhập từ khóa"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Margin="2 5"
+                                     Text="{Binding NCCSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="Black"
                                      VerticalContentAlignment="Bottom"
                              Padding="0"
                              Grid.Column="1"/>
 
                             <ComboBox Grid.Column="2"
-                              Margin="2 5"
+                              Margin="2 5" 
                               VerticalAlignment="Bottom"
                               Foreground="Black"
                               materialDesign:HintAssist.Hint="Nhà cung cấp"
                               ItemsSource="{Binding ListNCC}"
-                              DisplayMemberPath="TenNhaCungCap"
+                              DisplayMemberPath="Ten"
                               SelectedItem="{Binding SelectedNCC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             </ComboBox>
 
@@ -136,7 +144,7 @@
                             <TextBlock Foreground="Black" Margin="5"
                                VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
                         <Run Text="Tên sản phẩm: "/>
-                        <Run Text="{Binding TenHang}"/>
+                        <Run Text="{Binding SelectedHang.TenHang}"/>
                             </TextBlock>
 
                             <Grid Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Left">
@@ -145,27 +153,28 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox materialDesign:HintAssist.Hint="Số lượng nhập"
-                                 MaxWidth="100"
-                                 Foreground="Black"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 VerticalAlignment="Center" />
+                                         MaxWidth="100" Padding="0"
+                                         Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Foreground="Black"
+                                         VerticalAlignment="Center" />
                                 <TextBlock Grid.Column="1" Foreground="Black"
                                    FontSize="13"
                                    VerticalAlignment="Center">
-                            <Run Text=" / "/>
-                            <Run Text="{Binding Slton}"/>
-                            <Run Text="(Kho)"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding SelectedHang.SoLuongTon}"/>
+                                    <Run Text="(Kho)"/>
                                 </TextBlock>
                             </Grid>
 
                             <TextBlock Foreground="Black" Margin="5"
                                VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
                         <Run Text="ĐVT: "/>
-                        <Run Text="{Binding DonViTinh.TenDonViTinh}"/>
+                        <Run Text="{Binding SelectedHang.DonViTinh.TenDonViTinh}"/>
                             </TextBlock>
 
                             <TextBox materialDesign:HintAssist.Hint="Khuyễn mãi (%)"
                              Foreground="Black"
+                                     Text="{Binding KhuyenMai}"
                              VerticalAlignment="Top" 
                              Grid.Column="1" Grid.Row="2" Margin="0 0 20 4" Padding="0"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
@@ -173,14 +182,14 @@
                             <TextBlock Foreground="Black" Margin="5"
                                VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
                         <Run Text="Giá bán: "/>
-                        <Run Text="{Binding Gia}"/>
+                        <Run Text="{Binding SelectedHang.GiaBan}"/>
                             </TextBlock>
 
                             <TextBlock Foreground="Black" Margin="5"
                                VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">
                         <Run Text="Thành tiền: "/>
                         <Run Text="{Binding ThanhTien}"/>
-                        <Run Text="{Binding TienKhuyenMai}"/>
+                        <Run Text="{Binding TienGiam}"/>
                             </TextBlock>
 
                         </Grid>
@@ -200,8 +209,8 @@
                                         <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
                                         <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding TenHang}"/>
                                         <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
-                                        <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding Gia}"/>
-                                        <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding Slton}"/>
+                                        <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
+                                        <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -261,6 +270,28 @@
                         </TextBlock>
 
                         <!--Danh sách sản phẩm-->
+                        <Grid Grid.Row="3">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Auto">
+                                <ListView ItemsSource="{Binding ListCTHDN}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="MaxWidth" Value="100"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding Id}"/>
+                                            <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding Hang.TenHang}"/>
+                                            <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding Hang.DonViTinh.TenDonViTinh}"/>
+                                            <GridViewColumn Header ="Giá nhập" DisplayMemberBinding="{Binding DonGiaNhap}"/>
+                                            <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuong}"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </ScrollViewer>
+                            
+                        </Grid>
 
                         <TextBlock Foreground="Black" Margin="5 10" 
                            HorizontalAlignment="Left"
