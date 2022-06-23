@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="570" d:DesignWidth="880">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
-        <Border Background="#EEF0F5" CornerRadius="0 0 30 0">
+        <Border Background="#EEF0F5">
             <Grid>
                 <Grid Background="Transparent">
                     <Grid.RowDefinitions>

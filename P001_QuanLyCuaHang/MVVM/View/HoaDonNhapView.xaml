@@ -88,7 +88,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Margin="2 5"
                              Foreground="Black"
-                                     VerticalContentAlignment="Bottom"
+                             VerticalContentAlignment="Bottom"
                              Padding="0"
                              Grid.Column="1"/>
 
