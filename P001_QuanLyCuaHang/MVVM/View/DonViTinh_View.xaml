@@ -79,7 +79,7 @@
 
                 <!--data-->
                 <materialDesign:Card Grid.Row="2">
-                    <ListView ItemsSource="{Binding ListHangHoa}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                    <ListView ItemsSource="{Binding ListDonViTinh}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Mã đơn vị tính" DisplayMemberBinding="{Binding MaDonViTinh}"/>
