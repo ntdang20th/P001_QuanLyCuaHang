@@ -13,15 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace P001_QuanLyCuaHang
+namespace P001_QuanLyCuaHang.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HoaDonBanView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HoaDonBanView : UserControl
     {
-        private bool IsMaximized = false;
-        public MainWindow()
+        public HoaDonBanView()
         {
             InitializeComponent();
         }

@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang"
+             xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
+             xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -18,6 +20,31 @@
                 <ResourceDictionary Source="Themes/tabMenuQuanLy.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
+
+
+            <DataTemplate DataType="{x:Type viewModel:HangViewModel}">
+                <view:HangHoa_View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HoaDonNhapViewModel}">
+                <view:HoaDonNhapView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HoaDonBanViewModel}">
+                <view:HoaDonBanView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:KhachHangViewModel}">
+                <view:KhachHang_View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:NhaCungCapViewModel}">
+                <view:NhaCungCapView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ThongKeViewModel}">
+                <view:ThongKeView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

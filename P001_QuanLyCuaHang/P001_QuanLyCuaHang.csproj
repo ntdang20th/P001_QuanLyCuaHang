@@ -94,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\HoaDonBanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\HoaDonNhapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,7 +106,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\NhaCungCapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\QuanLy_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ThongKeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ucControlBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,14 +181,20 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ControlBarViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DonViTinhViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HangViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\HoaDonBanViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HoaDonNhapViewModel.cs" />
     <Compile Include="MVVM\ViewModel\KhachHangViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\NhaCungCapViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ThongKeViewModel.cs" />
     <Compile Include="MVVM\View\HangHoa_View.xaml.cs">
       <DependentUpon>HangHoa_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\HoaDonBanView.xaml.cs">
+      <DependentUpon>HoaDonBanView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\HoaDonNhapView.xaml.cs">
       <DependentUpon>HoaDonNhapView.xaml</DependentUpon>
@@ -180,8 +202,17 @@
     <Compile Include="MVVM\View\KhachHang_View.xaml.cs">
       <DependentUpon>KhachHang_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\NhaCungCapView.xaml.cs">
+      <DependentUpon>NhaCungCapView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\QuanLy_View.xaml.cs">
       <DependentUpon>QuanLy_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ThongKeView.xaml.cs">
+      <DependentUpon>ThongKeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ucControlBar.xaml.cs">
+      <DependentUpon>ucControlBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

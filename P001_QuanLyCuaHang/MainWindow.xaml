@@ -5,18 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:P001_QuanLyCuaHang"
+        xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
+        xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent"
-        Title="MainWindow" Height="720" Width="1080">
-    <Border Background="#EEF0F5" CornerRadius="5" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        Background="#d3d8e3"
+        Title="MainWindow" Height="600" Width="1200">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    
+    <Border Background="#EEF0F5" CornerRadius="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <Grid Grid.ColumnSpan="2" 
+                  Height="auto" Width="auto"
+                  VerticalAlignment="Top" Panel.ZIndex="99">
+                <view:ucControlBar/>
+            </Grid>
 
             <Grid Grid.Column="0">
                 <!--Dashboard bên trái-->
@@ -62,28 +76,49 @@
                                 <!--Menu button-->
                                 <StackPanel Grid.Row="2">
 
-                                    <Button x:Name="Button_menu" Style="{StaticResource Button_Dashboard}" Uid="0" Click="Button_menu_Click">
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding KhoCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Home" Margin="10"/>
-                                            <TextBlock Text="Quản Lý" Style="{StaticResource Resource_TextBlock}"/>
+                                            <TextBlock Text="Kho hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Style="{StaticResource Button_Dashboard}" Uid="1" Click="Button_menu_Click">
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding NhapHangCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>
+                                            <TextBlock Text="Nhập Hàng" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding BanHangCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>
                                             <TextBlock Text="Bán Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Style="{StaticResource Button_Dashboard}" Uid="2" Click="Button_menu_Click">
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding KhachHangCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="10"/>
                                             <TextBlock Text="Khách Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Style="{StaticResource Button_Dashboard}" Uid="3" Click="Button_menu_Click">
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding NhaCUngCapCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="10"/>
+                                            <TextBlock Text="Nhà cung cấp" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+
+                                    <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding ThongKeCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="CalendarLockOutline" Margin="10"/>
                                             <TextBlock Text="Thống Kê" Style="{StaticResource Resource_TextBlock}"/>
@@ -92,7 +127,7 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="3" Margin="0 0 0 20">
-                                    <Button Style="{StaticResource Button_Dashboard}" VerticalAlignment="Bottom" Uid="4" Click="Button_menu_Click">
+                                    <Button Style="{StaticResource Button_Dashboard}" VerticalAlignment="Bottom">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Logout" Margin="10"/>
                                             <TextBlock Text="Đăng xuất" Style="{StaticResource Resource_TextBlock}"/>
@@ -109,6 +144,12 @@
             </Grid>
 
             <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ContentControl Grid.Row="1"
+                                Content="{Binding CurrentView}"/>
             </Grid>
 
         </Grid>
