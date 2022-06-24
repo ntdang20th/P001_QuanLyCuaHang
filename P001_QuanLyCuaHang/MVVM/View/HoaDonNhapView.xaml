@@ -9,7 +9,7 @@
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              mc:Ignorable="d" 
-             Height="560" Width="1020"
+             Height="600" Width="1020"
              Background="Transparent"
              FontFamily="Helvetica"
              Foreground="Black">
@@ -23,7 +23,7 @@
         <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom, Duration=0:0:0.5}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.65*"/>
                     <ColumnDefinition Width="0.4*"/>
                 </Grid.ColumnDefinitions>
 
@@ -32,7 +32,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="120"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
@@ -192,27 +192,52 @@
                         </Grid>
                     </materialDesign:Card>
                     <!--List Sản phẩm-->
-                    <materialDesign:Card  Grid.Row="3"
+                    <materialDesign:Flipper Grid.Row="3"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                  materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                                  Background="Transparent"
+                                            Margin="8"
+                                  >
+                            <materialDesign:Flipper.FrontContent>
+                            <materialDesign:Card 
                                   materialDesign:ShadowAssist.ShadowDepth="Depth1"
                                   materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
                                   Background="White"
                                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                   UniformCornerRadius="5"
-                                  Margin="5">
-                        <Grid>
-                            <ListView ItemsSource="{Binding ListHang}" SelectedItem="{Binding SelectedHang, Mode=OneWayToSource}" >
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
-                                        <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding TenHang}"/>
-                                        <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
-                                        <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
-                                        <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
-                    </materialDesign:Card>
+                                  Margin="5" Padding="5">
+                                <Grid>
+                                    <Button Panel.ZIndex="99" Background="Transparent" 
+                                            BorderThickness="0" Padding="0" 
+                                            VerticalAlignment="Bottom" 
+                                            HorizontalAlignment="Right" Margin="5"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}">
+                                        <materialDesign:PackIcon Kind="PlusCircleOutline" 
+                                             
+                                             Foreground="Black"
+                                             Width="25" Height="25"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Button>
+                                        <ListView Grid.Row="0" ItemsSource="{Binding ListHang}" SelectedItem="{Binding SelectedHang, Mode=OneWayToSource}" >
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
+                                                    <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding TenHang}"/>
+                                                    <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
+                                                    <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
+                                                    <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                </Grid>
+                            </materialDesign:Card>
+                        </materialDesign:Flipper.FrontContent>
+                            <materialDesign:Flipper.BackContent>
+                            <Grid>
+                                <view:HangHoa_View/>
+                            </Grid>
+                            </materialDesign:Flipper.BackContent>
+                        </materialDesign:Flipper>
                 </Grid>
                 <!--Phần nội dung hóa đơn-->
                 <materialDesign:Card  Grid.Column="1"
@@ -274,10 +299,11 @@
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding Id}"/>
-                                            <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding Hang.TenHang}"/>
-                                            <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding Hang.DonViTinh.TenDonViTinh}"/>
+                                            <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding Hang.TenHang}"/>
+                                            <GridViewColumn Header ="ĐVT" DisplayMemberBinding="{Binding Hang.DonViTinh.TenDonViTinh}"/>
                                             <GridViewColumn Header ="Giá nhập" DisplayMemberBinding="{Binding DonGiaNhap}"/>
-                                            <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuong}"/>
+                                            <GridViewColumn Header ="SL" DisplayMemberBinding="{Binding SoLuong}"/>
+                                            <GridViewColumn Header ="TT" DisplayMemberBinding="{Binding ThanhTien}"/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>

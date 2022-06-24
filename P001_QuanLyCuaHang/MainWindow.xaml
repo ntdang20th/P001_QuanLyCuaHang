@@ -12,7 +12,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="MainWindow" Height="640" Width="1200">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>

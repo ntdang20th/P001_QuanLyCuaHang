@@ -172,6 +172,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 CTHD = new ChiTietHDB() { IdHDB = HDB.SoHD, IdHang = SelectedHang.Id, SoLuong = SoLuong, DonGiaBan = GiaBan, KhuyenMai = KhuyenMai };
                 DataProvider.Instance.DB.ChiTietHDBs.Add(CTHD);
                 DataProvider.Instance.DB.SaveChanges();
+                CTHD.ThanhTien = ThanhTien;
                 ListCTHDB.Add(CTHD);
 
                 //- trong kho
@@ -306,9 +307,9 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             ThanhTienBangSo = 0;
             foreach (ChiTietHDB i in ListCTHDB)
             {
-                ThanhTienBangSo += (int)(i.SoLuong * i.DonGiaBan) - (int)(i.SoLuong * i.DonGiaBan*KhuyenMai/100);
-                ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
+                ThanhTienBangSo += i.ThanhTien;
             }
+            ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
         }
         #endregion
     }

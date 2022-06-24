@@ -20,7 +20,8 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         public Nullable<int> SoLuong { get; set; }
         public Nullable<int> DonGiaBan { get; set; }
         public Nullable<double> KhuyenMai { get; set; }
-    
+        public int ThanhTien { get; set; }
+
         public virtual Hang Hang { get; set; }
         public virtual HoaDonBan HoaDonBan { get; set; }
     }

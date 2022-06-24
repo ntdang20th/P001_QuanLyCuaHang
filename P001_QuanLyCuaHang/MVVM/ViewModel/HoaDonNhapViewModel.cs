@@ -128,7 +128,6 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public ICommand InHD_Command { get; set; }
         #endregion
 
-
         public HoaDonNhapViewModel()
         {
             ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs);
@@ -163,7 +162,10 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 CTHD = new ChiTietHDN() { IdHDN = HDN.SoHD, IdHang = SelectedHang.Id, SoLuong = SoLuong, DonGiaNhap = GiaNhap};
                 DataProvider.Instance.DB.ChiTietHDNs.Add(CTHD);
                 DataProvider.Instance.DB.SaveChanges();
+                CTHD.ThanhTien = ThanhTien;
                 ListCTHDN.Add(CTHD);
+
+               
 
                 //add vaof kho
                 var hang = DataProvider.Instance.DB.Hangs.Where(x => x.Id == SelectedHang.Id).SingleOrDefault();
@@ -293,7 +295,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             ThanhTienBangSo = 0;
             foreach(ChiTietHDN i in ListCTHDN)
             {
-                ThanhTienBangSo += (int)(i.SoLuong * i.DonGiaNhap);
+                ThanhTienBangSo += i.ThanhTien;
             }
             ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
         }
