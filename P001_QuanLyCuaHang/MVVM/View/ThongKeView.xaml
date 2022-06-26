@@ -10,12 +10,105 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Card UniformCornerRadius="15"
+                                 Margin="10"
+                                 Grid.Column="0"
+                                 Background="Aquamarine">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center"
+                            Margin="5 5 20 5"
+                            HorizontalAlignment="Center">
+                    <RadioButton Content="Ngày"
+                            Height="50"
+                            FontSize="15"
+                            Style="{StaticResource FillterRadioButtonTheme}">
+
+                    </RadioButton>
+
+                    <RadioButton Content="Tuần"
+                            Height="50"
+                            FontSize="15"
+                            Style="{StaticResource FillterRadioButtonTheme}">
+                    </RadioButton>
+
+                    <RadioButton Content="Tháng"
+                            Height="50"
+                            FontSize="15"
+                            Style="{StaticResource FillterRadioButtonTheme}">
+                    </RadioButton>
+
+                    <RadioButton Content="Mùa"
+                            Height="50"
+                            FontSize="15"
+                            Style="{StaticResource FillterRadioButtonTheme}">
+                    </RadioButton>
+
+                    <RadioButton Content="Năm" 
+                            Height="50"
+                            FontSize="15"
+                            Style="{StaticResource FillterRadioButtonTheme}">
+                    </RadioButton>
+
+                    <RadioButton Content="Tùy chọn"
+                                Height="50"
+                                FontSize="15"
+                                Style="{StaticResource FillterRadioButtonTheme}"
+                                IsChecked="True">
+                    </RadioButton>
+
+                    <DatePicker Grid.Column="1" Grid.Row="0"
+                            Margin="10 25 10 20"
+                            Width="50"
+                            materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                            VerticalContentAlignment="Bottom"
+                            SelectedDate="{Binding NgaySinh, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                    <DatePicker Grid.Column="1" Grid.Row="0"
+                            Margin="10 25 10 20"
+                            Width="50"
+                            materialDesign:HintAssist.Hint="Ngày kết thúc"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                            VerticalContentAlignment="Bottom"
+                            SelectedDate="{Binding NgaySinh, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card UniformCornerRadius="15"
+                                 Margin="10"
+                                 Grid.Column="1"
+                                 Background="Aquamarine">
+                <Button Background="Red"
+                        Content="Button"
+                        Width="90"
+                        Height="50"
+                        Style="{StaticResource ButtonChucNang}"/>
+            </materialDesign:Card>
+
+        </Grid>
+        
         <materialDesign:Card Margin="10"
-                             Grid.Row="0"
+                             Grid.Row="1"
                              UniformCornerRadius="15"
                              Background="Aquamarine">
             <Grid Grid.Row="0">
@@ -26,151 +119,136 @@
                 </Grid.ColumnDefinitions>
 
                 <WrapPanel Grid.Column="0">
-                    <Border BorderBrush="White"
-                        BorderThickness="5"
-                        CornerRadius="15"
-                        Margin="10">
-                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
                                          UniformCornerRadius="20"
                                          BorderThickness="5"
                                          BorderBrush="White"
                                          Width="260"
                                          Height="130"
-                                         Background="Transparent"
+                                         Margin="10"
+                                         Background="Cyan"
                                          HorizontalAlignment="Center">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Margin="10"
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="10"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
-                                    <materialDesign:PackIcon Kind="InboxArrowDown" 
+                                <materialDesign:PackIcon Kind="InboxArrowDown" 
                                                      Foreground="#29a3ec" 
                                                      Width="50" 
                                                      Height="50"
                                                      HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Số lượng nhập"
+                                <TextBlock Text="Số lượng nhập"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <TextBlock Text="12542 sản phẩm"
+                            <TextBlock Text="12542 sản phẩm"
                                        Grid.Row="1"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"/>
-                            </Grid>
+                        </Grid>
 
-                        </materialDesign:Card>
-                    </Border>
+                    </materialDesign:Card>
                 </WrapPanel>
 
                 <WrapPanel Grid.Column="1">
-                    <Border BorderBrush="White"
-                        BorderThickness="5"
-                        CornerRadius="15"
-                        Margin="10">
-                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
                                          UniformCornerRadius="15"
                                          BorderThickness="5"
                                          BorderBrush="White"
                                          Width="260"
                                          Height="130"
-                                         Background="Transparent"
+                                         Background="Cyan"
+                                         Margin="10"
                                          HorizontalAlignment="Center">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Margin="10"
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="10"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
-                                    <materialDesign:PackIcon Kind="Origin" 
+                                <materialDesign:PackIcon Kind="Origin" 
                                                      Foreground="#29a3ec" 
                                                      Width="50" 
                                                      Height="50"
                                                      HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Số lượng bán"
+                                <TextBlock Text="Số lượng bán"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <TextBlock Text="7544 sản phẩm"
+                            <TextBlock Text="7544 sản phẩm"
                                        Grid.Row="1"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"/>
-                            </Grid>
-                        </materialDesign:Card>
-
-
-                    </Border>
+                        </Grid>
+                    </materialDesign:Card>
                 </WrapPanel>
 
                 <WrapPanel Grid.Column="2">
-                    <Border BorderBrush="White"
-                        BorderThickness="5"
-                        CornerRadius="15"
-                        Margin="10">
-                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"  
                                          UniformCornerRadius="15"
                                          BorderThickness="5"
                                          BorderBrush="White"
                                          Width="260"
                                          Height="130"
-                                         Background="Transparent"
+                                         Background="Cyan"
+                                         Margin="10"
                                          HorizontalAlignment="Center">
-                            <Grid Background="Transparent">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Margin="10"
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="10"
                                         Background="Transparent"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
-                                    <materialDesign:PackIcon Kind="RateReview" 
+                                <materialDesign:PackIcon Kind="RateReview" 
                                                      Foreground="#29a3ec" 
                                                      Width="50" 
                                                      Height="50"
                                                      HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Lợi nhuận"
+                                <TextBlock Text="Lợi nhuận"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <TextBlock Text="532 tỷ đồng"
+                            <TextBlock Text="532 tỷ đồng"
                                        Grid.Row="1"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="#29a3ec"
                                        HorizontalAlignment="Center"/>
-                            </Grid>
-
-                        </materialDesign:Card>
-                    </Border>
+                        </Grid>
+                    </materialDesign:Card>
                 </WrapPanel>
             </Grid>
         </materialDesign:Card>
 
-        <materialDesign:Card Grid.Row="1"
+        <materialDesign:Card Grid.Row="3"
                              Background="Aquamarine"
                              Margin="10"
                              UniformCornerRadius="15">
@@ -255,7 +333,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <materialDesign:Card Background="Gold"
@@ -303,38 +380,6 @@
                         <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountConvertOutline"
-                                                     Height="15"
-                                                     Width="15"
-                                                     Foreground="OrangeRed"/>
-                            <TextBlock Text="Số hàng"
-                                       Margin="5 0 0 0"
-                                       Foreground="OrangeRed"
-                                       FontWeight="Bold"/>
-                        </StackPanel>
-
-                        <TextBlock Text="15552 sản phẩm"
-                                   Grid.Row="1"
-                                   Foreground="OrangeRed"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                    </Grid>
-                </materialDesign:Card>
-
-                <materialDesign:Card Background="Gold"
-                                     Grid.Column="2"
-                                     UniformCornerRadius="15"
-                                     Margin="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DateRange"
                                                      Height="15"
                                                      Width="15"
@@ -355,7 +400,7 @@
                 </materialDesign:Card>
 
                 <materialDesign:Card Background="Gold"
-                                     Grid.Column="3"
+                                     Grid.Column="2"
                                      UniformCornerRadius="15"
                                      Margin="5">
                     <Grid>
@@ -388,7 +433,7 @@
                 </materialDesign:Card>
 
                 <materialDesign:Card Background="Gold"
-                                     Grid.Column="4"
+                                     Grid.Column="3"
                                      UniformCornerRadius="15"
                                      Margin="5">
                     <Grid>
