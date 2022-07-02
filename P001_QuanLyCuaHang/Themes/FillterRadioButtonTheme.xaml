@@ -10,8 +10,7 @@
                           HorizontalAlignment="Stretch"
                           Background="{TemplateBinding Background}">
                         <TextBlock Text="{TemplateBinding Property=Content}"
-                                   VerticalAlignment="Center"
-                                   Margin="20,10,20,10">
+                                   VerticalAlignment="Center">
                         </TextBlock>
 
                     </Grid>
@@ -20,7 +19,7 @@
         </Setter>
 
         <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
 
         <Style.Triggers>

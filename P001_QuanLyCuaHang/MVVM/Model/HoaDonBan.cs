@@ -23,7 +23,8 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         public string SoHD { get; set; }
         public Nullable<System.DateTime> NgayBan { get; set; }
         public Nullable<int> Makh { get; set; }
-    
+        public int ThanhTien { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHDB> ChiTietHDBs { get; set; }
         public virtual KhachHang KhachHang { get; set; }

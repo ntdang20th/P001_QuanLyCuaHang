@@ -24,6 +24,8 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         public string Sdt { get => _Sdt; set { _Sdt = value; OnPropertyChanged(); } }
         public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
         public Nullable<int> An { get => _An; set { _An = value; OnPropertyChanged(); } }
+        public int TongHD { get; set; }
+        public int TongTien { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; set; }

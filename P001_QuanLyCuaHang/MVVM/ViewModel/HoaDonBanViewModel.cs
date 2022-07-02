@@ -299,7 +299,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             string t = "00000" + (count + 1);
             t = t.Substring(t.Length - 5, 5);
 
-            return "HDN_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+            return "HDB_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
         }
 
         void TinhThanhTienBangSo()

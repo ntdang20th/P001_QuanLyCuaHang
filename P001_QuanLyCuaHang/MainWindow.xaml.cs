@@ -20,7 +20,6 @@ namespace P001_QuanLyCuaHang
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool IsMaximized = false;
         public MainWindow()
         {
             InitializeComponent();
