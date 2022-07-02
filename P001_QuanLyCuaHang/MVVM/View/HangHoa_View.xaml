@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              d:DesignHeight="auto" d:DesignWidth="auto" 
@@ -66,10 +67,15 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
                             <ComboBox materialDesign:HintAssist.Hint="Đơn vị tính"
                                       DisplayMemberPath="TenDonViTinh"
-                                  Grid.Row="0" 
-                                  Width="160"
+                                  Grid.Column="0"
+                                  Width="130"
                                   ItemsSource="{Binding ListDonViTinh}"
                                   SelectedItem="{Binding SelectedDVT}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -79,6 +85,8 @@
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
+                        </Grid>
+                            
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá nhập"
                                       IsReadOnly="True"

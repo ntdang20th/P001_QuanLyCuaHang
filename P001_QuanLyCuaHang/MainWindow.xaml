@@ -85,6 +85,14 @@
                                     </Button>
 
                                     <Button Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding DVTCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Home" Margin="10"/>
+                                            <TextBlock Text="Đơn vị tính" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding NhapHangCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>

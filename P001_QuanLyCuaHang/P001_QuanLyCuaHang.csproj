@@ -91,6 +91,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\CTHDBView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\CTHDNView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\DonViTinh_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +199,7 @@
     </Compile>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ControlBarViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\CTHDNViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DonViTinhViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HangViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HoaDonBanViewModel.cs" />
@@ -199,6 +208,12 @@
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\NhaCungCapViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ThongKeViewModel.cs" />
+    <Compile Include="MVVM\View\CTHDBView.xaml.cs">
+      <DependentUpon>CTHDBView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\CTHDNView.xaml.cs">
+      <DependentUpon>CTHDNView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\DonViTinh_View.xaml.cs">
       <DependentUpon>DonViTinh_View.xaml</DependentUpon>
     </Compile>

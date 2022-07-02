@@ -30,6 +30,10 @@
                 <view:HangHoa_View/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:DonViTinhViewModel}">
+                <view:DonViTinh_View/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:HoaDonNhapViewModel}">
                 <view:HoaDonNhapView/>
             </DataTemplate>

@@ -6,7 +6,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              mc:Ignorable="d" 
+             xmlns:viewModel ="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:DonViTinhViewModel/>
+    </UserControl.DataContext>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:0.5}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -41,10 +46,11 @@
 
                         <TextBox  materialDesign:HintAssist.Hint="Mã đơn vị tính"
                                   Grid.Column="0"
-                                  Name="txtMaKhachHang"
+                                  IsReadOnly="True"
                                   Grid.Row="0" Margin="0 0 30 0"
                                   HorizontalAlignment="Right"
                                   Width="200"
+                                  Text="{Binding SelectedDonViTinh.Id}"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
 
@@ -53,6 +59,7 @@
                                   Grid.Row="0"
                                   HorizontalAlignment="Left"
                                   Width="200"
+                                  Text="{Binding Ten}"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
                     </Grid>
@@ -69,16 +76,19 @@
                         <Button Style="{StaticResource ButtonChucNang}"
                             Content="Thêm" Width="120" 
                                 HorizontalAlignment="Right" Height="40"
-                            Grid.Column="0"/>
+                            Grid.Column="0"
+                                Command="{Binding Them_Command}"/>
 
                         <Button Style="{StaticResource ButtonChucNang}"
                             Content="Sửa" Width="120" Height="40"
-                            Grid.Column="1"/>
+                            Grid.Column="1"
+                                Command="{Binding Sua_Command}"/>
 
                         <Button Style="{StaticResource ButtonChucNang}"
                             Content="Xóa" Width="120" 
                                 HorizontalAlignment="Left" Height="40"
-                            Grid.Column="2"/>
+                            Grid.Column="2"
+                                Command="{Binding Xoa_Command}"/>
                     </Grid>
 
                 <!--data-->
@@ -89,10 +99,10 @@
                                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
-                <ListView ItemsSource="{Binding ListDonViTinh}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                <ListView ItemsSource="{Binding ListDonViTinh}" SelectedItem="{Binding SelectedDonViTinh, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Mã đơn vị tính" DisplayMemberBinding="{Binding MaDonViTinh}"/>
+                                <GridViewColumn Header="Mã đơn vị tính" DisplayMemberBinding="{Binding Id}"/>
                                 <GridViewColumn Header="Tên đơn vị tính" DisplayMemberBinding="{Binding TenDonViTinh}"/>
                             </GridView>
                         </ListView.View>

@@ -16,6 +16,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public ICommand KhachHangCommand { get; set; }
         public ICommand NhaCUngCapCommand { get; set; }
         public ICommand ThongKeCommand { get; set; }
+        public ICommand DVTCommand { get; set; }
 
 
 
@@ -25,6 +26,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public KhachHangViewModel KhachHangVM { get; set; }
         public NhaCungCapViewModel NhaCungCapVM { get; set; }
         public ThongKeViewModel ThongKeVM { get; set; }
+        public DonViTinhViewModel DVTVM { get; set; }
 
 
 
@@ -47,9 +49,14 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             KhachHangVM = new KhachHangViewModel();
             NhaCungCapVM = new NhaCungCapViewModel();
             ThongKeVM = new ThongKeViewModel();
+            DVTVM = new DonViTinhViewModel();
 
             KhoCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
                 CurrentView = KhoVM;
+            });
+
+            DVTCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
+                CurrentView = DVTVM;
             });
 
             NhapHangCommand = new RelayCommand<object>((p) => { return true; }, (p) => {

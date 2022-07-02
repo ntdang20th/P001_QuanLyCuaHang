@@ -1,4 +1,5 @@
-﻿using P001_QuanLyCuaHang.MVVM.Model;
+﻿using P001_QuanLyCuaHang.Functions;
+using P001_QuanLyCuaHang.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,15 +47,61 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         private bool _TuyChon = false;
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
 
-        
+
+        //hoadon
+        public string _SoHD = "";
+        public string SoHD { get => _SoHD; set { _SoHD = value; OnPropertyChanged(); } }
+
+        public string _DateString = "";
+        public string DateString { get => _DateString; set { _DateString = value; OnPropertyChanged(); } }
+
+        public int _ThanhTienBangSo = 0;
+        public int ThanhTienBangSo { get => _ThanhTienBangSo; set { _ThanhTienBangSo = value; OnPropertyChanged(); } }
+
+        public string _ThanhTienBangChu = "";
+        public string ThanhTienBangChu { get => _ThanhTienBangChu; set { _ThanhTienBangChu = value; OnPropertyChanged(); } }
+
+        public ObservableCollection<ChiTietHDN> _ListCTHDN;
+        public ObservableCollection<ChiTietHDN> ListCTHDN { get => _ListCTHDN; set { _ListCTHDN = value; OnPropertyChanged(); } }
+
+        public ObservableCollection<ChiTietHDB> _ListCTHDB;
+        public ObservableCollection<ChiTietHDB> ListCTHDB { get => _ListCTHDB; set { _ListCTHDB = value; OnPropertyChanged(); } }
 
         #endregion
         #region Selected Item
         private HoaDonNhap _SelectedHDN;
-        public HoaDonNhap SelectedHDN { get => _SelectedHDN; set { _SelectedHDN = value; OnPropertyChanged(); } }
+        public HoaDonNhap SelectedHDN { get => _SelectedHDN; set 
+            { 
+                _SelectedHDN = value; 
+                OnPropertyChanged(); 
+                if(SelectedHDN != null)
+                {
+                    SoHD = SelectedHDN.SoHD;
+                    DateString = "Ngày " + DateTime.Today.Day + " tháng " + DateTime.Today.Month + " năm " + DateTime.Today.Year;
+                    SelectedNCC = SelectedHDN.NhaCungCap;
+                    ThanhTienBangSo = SelectedHDN.ThanhTien;
+                    ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
+                    ListCTHDN = new ObservableCollection<ChiTietHDN>(DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == SelectedHDN.SoHD));
+                }
+            } 
+        }
 
         private HoaDonBan _SelectedHDB;
-        public HoaDonBan SelectedHDB { get => _SelectedHDB; set { _SelectedHDB = value; OnPropertyChanged(); } }
+        public HoaDonBan SelectedHDB { get => _SelectedHDB; set 
+            { 
+                _SelectedHDB = value; 
+                OnPropertyChanged();
+                if (SelectedHDB != null)
+                {
+                    SoHD = SelectedHDB.SoHD;
+                    DateString = "Ngày " + DateTime.Today.Day + " tháng " + DateTime.Today.Month + " năm " + DateTime.Today.Year;
+                    SelectedKhachHang = SelectedHDB.KhachHang;
+                    ThanhTienBangSo = SelectedHDB.ThanhTien;
+                    ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
+                    ListCTHDB = new ObservableCollection<ChiTietHDB>(DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == SelectedHDB.SoHD));
+                }
+            } 
+        }
 
         private KhachHang _SelectedKhachHang;
         public KhachHang SelectedKhachHang { get => _SelectedKhachHang; set { _SelectedKhachHang = value; OnPropertyChanged(); } }

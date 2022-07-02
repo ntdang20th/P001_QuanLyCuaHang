@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              xmlns:function ="clr-namespace:P001_QuanLyCuaHang.Functions"
              xmlns:viewModel ="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
+             xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DesignHeight="600" d:DesignWidth="800">
@@ -16,7 +17,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -137,10 +138,11 @@
             </materialDesign:Card>
 
 
-            <Button Grid.Column="1"
+            <Button Grid.Column="1" 
                     Content="Xem thống kê"
                     Width="120"
                     Height="50"
+                    FontSize="16"
                     Command="{Binding ThongKe_Command}"
                     CommandParameter="{Binding ElementName=DateGrid}"
                     Style="{StaticResource ButtonChucNang}"/>
@@ -159,7 +161,7 @@
                                   Background="#5685f0"
                                   Foreground="White"
                                   UniformCornerRadius="5"
-                                  Margin="10" Padding="10">
+                                  Margin="10" Padding="5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -172,11 +174,11 @@
                                     VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="InboxArrowDown" 
                                                      Foreground="White" 
-                                                     Width="40" 
-                                                     Height="40"
+                                                     Width="35" 
+                                                     Height="35"
                                                      HorizontalAlignment="Center"/>
                         <TextBlock Text="Nhập kho"
-                                       FontSize="22" Margin="10 0 0 0"
+                                       FontSize="20" Margin="10 0 0 0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
@@ -184,7 +186,7 @@
                     </StackPanel>
 
                     <TextBlock Grid.Row="1"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="White"
                                HorizontalAlignment="Center">
                         <Run Text="{Binding NhapKho_SP}"/>
@@ -192,13 +194,11 @@
                     </TextBlock>
 
                     <TextBlock Grid.Row="2"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="White"
-                               HorizontalAlignment="Center">
-                        <Run Text="{Binding NhapKho_GT}"/>
-                        <Run Text=" đồng"/>
-                    </TextBlock>
-                               
+                               HorizontalAlignment="Center"
+                               Text="{Binding NhapKho_GT, StringFormat={}{0:#,# VNĐ}}"/>
+
                 </Grid>
 
             </materialDesign:Card>
@@ -209,7 +209,7 @@
                                   Background="#5685f0"
                                   Foreground="White"
                                   UniformCornerRadius="5"
-                                  Margin="10" Padding="10">
+                                  Margin="10" Padding="5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -221,11 +221,11 @@
                                     VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="CurrencyUsd" 
                                                      Foreground="White" 
-                                                     Width="40" 
-                                                     Height="40"
+                                                     Width="35" 
+                                                     Height="35"
                                                      HorizontalAlignment="Center"/>
                         <TextBlock Text="Lợi nhuận"
-                                       FontSize="22" Margin="10 0 0 0"
+                                       FontSize="20" Margin="10 0 0 0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
@@ -233,12 +233,10 @@
                     </StackPanel>
 
                     <TextBlock Grid.Row="1"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="White"
-                               HorizontalAlignment="Center">
-                        <Run Text="{Binding LoiNhuan}"/>
-                        <Run Text=" đồng"/>
-                    </TextBlock>
+                               HorizontalAlignment="Center"
+                               Text="{Binding LoiNhuan, StringFormat={}{0:#,# VNĐ}}"/>
                 </Grid>
 
             </materialDesign:Card>
@@ -249,7 +247,7 @@
                                   Background="#5685f0"
                                   Foreground="White"
                                   UniformCornerRadius="5"
-                                  Margin="10" Padding="10">
+                                  Margin="10" Padding="5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -262,11 +260,11 @@
                                     VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="InboxArrowUp" 
                                                      Foreground="White" 
-                                                     Width="40" 
-                                                     Height="40"
+                                                     Width="35" 
+                                                     Height="35"
                                                      HorizontalAlignment="Center"/>
                         <TextBlock Text="Xuất kho"
-                                       FontSize="22" Margin="10 0 0 0"
+                                       FontSize="20" Margin="10 0 0 0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
@@ -274,7 +272,7 @@
                     </StackPanel>
 
                     <TextBlock Grid.Row="1"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="White"
                                HorizontalAlignment="Center">
                         <Run Text="{Binding XuatKho_SP}"/>
@@ -282,18 +280,17 @@
                     </TextBlock>
 
                     <TextBlock Grid.Row="2"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="White"
-                               HorizontalAlignment="Center">
-                        <Run Text="{Binding XuatKho_GT}"/>
-                        <Run Text=" đồng"/>
-                    </TextBlock>
+                               HorizontalAlignment="Center"
+                               Text="{Binding XuatKho_GT, StringFormat={}{0:#,# VNĐ}}"/>
                 </Grid>
 
             </materialDesign:Card>
         </Grid>
 
         <Grid Grid.Row="2">
+
             <TabControl FontSize="13"
                         Margin="10">
                 <TabControl.Resources>
@@ -302,20 +299,34 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="Hóa đơn nhập">
-                    <Grid>
-                        <ListView ItemsSource="{Binding ListHDN}" SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
-                                    <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
-                                    <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
-                                    <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
+                    <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                        <Grid>
+                            <ListView ItemsSource="{Binding ListHDN}" SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
+                                        <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
+                                        <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
+                                        <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
+                                    </GridView>
+                                </ListView.View>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDoubleClick">
+                                        <i:InvokeCommandAction Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ListView>
+                        </Grid>
+                        <materialDesign:TransitionerSlide >
+                            <materialDesign:TransitionerSlide.OpeningEffects>
+                                <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.5"/>
+                            </materialDesign:TransitionerSlide.OpeningEffects>
+                            <view:CTHDNView/>
+                        </materialDesign:TransitionerSlide>
+                    </materialDesign:Transitioner>
                 </TabItem>
                 <TabItem Header="Hóa đơn bán">
+                    <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
                     <Grid>
                         <ListView ItemsSource="{Binding ListHDB}" SelectedItem="{Binding SelectedHDB, Mode=OneWayToSource}" >
                             <ListView.View>
@@ -326,8 +337,20 @@
                                     <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
                                 </GridView>
                             </ListView.View>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{x:Static materialDesign:Transitioner.MoveLastCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </ListView>
                     </Grid>
+                        <materialDesign:TransitionerSlide >
+                            <materialDesign:TransitionerSlide.OpeningEffects>
+                                <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.5"/>
+                            </materialDesign:TransitionerSlide.OpeningEffects>
+                            <view:CTHDBView/>
+                        </materialDesign:TransitionerSlide>
+                    </materialDesign:Transitioner>
                 </TabItem>
                 <TabItem Header="Khách hàng">
                     <Grid>
@@ -357,11 +380,7 @@
                         </ListView>
                     </Grid>
                 </TabItem>
-                
             </TabControl>
         </Grid>
-
-
-
     </Grid>
 </UserControl>
