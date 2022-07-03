@@ -11,7 +11,7 @@
         xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
         FontSize="14"
         Background="#EEF0F5"
-        Height="600" Width="800">
+        Height="600" Width="650">
     <Window.DataContext>
         <viewModel:InHDBViewModel/>
     </Window.DataContext>
@@ -25,17 +25,16 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
             </Grid.ColumnDefinitions>
 
             <TextBox  materialDesign:HintAssist.Hint="Nhập số HD"
                                   Grid.Column="0"
                       Name="txtSoHD"
-                      Text="{Binding SoHD}"
-                                      IsReadOnly="True"
+                      Text="{Binding SoHD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   HorizontalAlignment="Center" 
                                   Width="160"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
