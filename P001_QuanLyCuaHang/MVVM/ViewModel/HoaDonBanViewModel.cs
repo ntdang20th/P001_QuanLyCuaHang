@@ -6,7 +6,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace P001_QuanLyCuaHang.MVVM.ViewModel
 {
@@ -266,19 +268,27 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 SelectedHang = null;
             });
 
-            InHD_Command = new RelayCommand<object>((p) =>
+            InHD_Command = new RelayCommand<Grid>((p) =>
             {
-                return DangBan;
+                return true;
             }, (p) =>
             {
-
-
-                //them hoa don
+                InHDB f = new InHDB(SoHD);
+                f.ShowDialog();
             });
         }
 
 
         #region Method
+        object getCard(Grid g)
+        {
+            object card = null;
+            var x = g.Children[0];
+            var y = (x as Grid).Children;
+
+            return card;
+        }
+
         void TinhThanhTien()
         {
             if (SoLuong == 0 || GiaBan == 0)

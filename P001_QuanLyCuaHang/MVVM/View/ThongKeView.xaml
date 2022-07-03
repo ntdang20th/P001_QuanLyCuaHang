@@ -299,34 +299,25 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="Hóa đơn nhập">
-                    <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
-                        <Grid>
-                            <ListView ItemsSource="{Binding ListHDN}" SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
-                                        <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
-                                        <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
-                                        <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
-                                    </GridView>
-                                </ListView.View>
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseDoubleClick">
-                                        <i:InvokeCommandAction Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </ListView>
-                        </Grid>
-                        <materialDesign:TransitionerSlide >
-                            <materialDesign:TransitionerSlide.OpeningEffects>
-                                <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.5"/>
-                            </materialDesign:TransitionerSlide.OpeningEffects>
-                            <view:CTHDNView/>
-                        </materialDesign:TransitionerSlide>
-                    </materialDesign:Transitioner>
+                    <Grid>
+                        <ListView ItemsSource="{Binding ListHDN}" SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
+                                    <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
+                                    <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
+                                    <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
+                                </GridView>
+                            </ListView.View>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding ChiTietHDN_Command}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListView>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Hóa đơn bán">
-                    <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
                     <Grid>
                         <ListView ItemsSource="{Binding ListHDB}" SelectedItem="{Binding SelectedHDB, Mode=OneWayToSource}" >
                             <ListView.View>
@@ -339,18 +330,11 @@
                             </ListView.View>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseDoubleClick">
-                                    <i:InvokeCommandAction Command="{x:Static materialDesign:Transitioner.MoveLastCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ChiTietHDB_Command}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ListView>
                     </Grid>
-                        <materialDesign:TransitionerSlide >
-                            <materialDesign:TransitionerSlide.OpeningEffects>
-                                <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.5"/>
-                            </materialDesign:TransitionerSlide.OpeningEffects>
-                            <view:CTHDBView/>
-                        </materialDesign:TransitionerSlide>
-                    </materialDesign:Transitioner>
                 </TabItem>
                 <TabItem Header="Khách hàng">
                     <Grid>

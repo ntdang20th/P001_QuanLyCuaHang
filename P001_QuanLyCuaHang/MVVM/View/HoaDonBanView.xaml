@@ -68,7 +68,8 @@
                         <Button Grid.Column="5"
                         Style="{StaticResource ButtonChucNang}"
                         Content="In HD"
-                                Command="{Binding InHD_Command}"/>
+                                Command="{Binding InHD_Command}"
+                                CommandParameter="{Binding ElementName=printGrid}"/>
                     </Grid>
                     <!--Nhà cung cấp-->
                     <materialDesign:Card  Grid.Row="1"
@@ -241,7 +242,7 @@
                     </materialDesign:Flipper>
                 </Grid>
                 <!--Phần nội dung hóa đơn-->
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" Name="printGrid">
                     <view:CTHDBView/>
                 </Grid>
             </Grid>

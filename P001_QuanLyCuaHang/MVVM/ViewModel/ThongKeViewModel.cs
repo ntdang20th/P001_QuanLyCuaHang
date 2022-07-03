@@ -48,25 +48,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
 
 
-        //hoadon
-        public string _SoHD = "";
-        public string SoHD { get => _SoHD; set { _SoHD = value; OnPropertyChanged(); } }
-
-        public string _DateString = "";
-        public string DateString { get => _DateString; set { _DateString = value; OnPropertyChanged(); } }
-
-        public int _ThanhTienBangSo = 0;
-        public int ThanhTienBangSo { get => _ThanhTienBangSo; set { _ThanhTienBangSo = value; OnPropertyChanged(); } }
-
-        public string _ThanhTienBangChu = "";
-        public string ThanhTienBangChu { get => _ThanhTienBangChu; set { _ThanhTienBangChu = value; OnPropertyChanged(); } }
-
-        public ObservableCollection<ChiTietHDN> _ListCTHDN;
-        public ObservableCollection<ChiTietHDN> ListCTHDN { get => _ListCTHDN; set { _ListCTHDN = value; OnPropertyChanged(); } }
-
-        public ObservableCollection<ChiTietHDB> _ListCTHDB;
-        public ObservableCollection<ChiTietHDB> ListCTHDB { get => _ListCTHDB; set { _ListCTHDB = value; OnPropertyChanged(); } }
-
+        
         #endregion
         #region Selected Item
         private HoaDonNhap _SelectedHDN;
@@ -76,12 +58,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 OnPropertyChanged(); 
                 if(SelectedHDN != null)
                 {
-                    SoHD = SelectedHDN.SoHD;
-                    DateString = "Ngày " + DateTime.Today.Day + " tháng " + DateTime.Today.Month + " năm " + DateTime.Today.Year;
-                    SelectedNCC = SelectedHDN.NhaCungCap;
-                    ThanhTienBangSo = SelectedHDN.ThanhTien;
-                    ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
-                    ListCTHDN = new ObservableCollection<ChiTietHDN>(DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == SelectedHDN.SoHD));
+                   
                 }
             } 
         }
@@ -93,12 +70,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedHDB != null)
                 {
-                    SoHD = SelectedHDB.SoHD;
-                    DateString = "Ngày " + DateTime.Today.Day + " tháng " + DateTime.Today.Month + " năm " + DateTime.Today.Year;
-                    SelectedKhachHang = SelectedHDB.KhachHang;
-                    ThanhTienBangSo = SelectedHDB.ThanhTien;
-                    ThanhTienBangChu = ChuyenSoThanhChu.DocTienBangChu(ThanhTienBangSo, " đồng.");
-                    ListCTHDB = new ObservableCollection<ChiTietHDB>(DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == SelectedHDB.SoHD));
+                    
                 }
             } 
         }
@@ -118,6 +90,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public ICommand Nam_Command { get; set; }
         public ICommand TuyChon_Command { get; set; }
         public ICommand ThongKe_Command { get; set; }
+        public ICommand ChiTietHDB_Command { get; set; }
+        public ICommand ChiTietHDN_Command { get; set; }
         #endregion
 
         public ThongKeViewModel()
@@ -226,6 +200,25 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 TinhTien();
                 LayDSKHvNCC();
             });
+
+            ChiTietHDN_Command = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                InHDN f = new InHDN(SelectedHDN.SoHD);
+                f.ShowDialog();
+            });
+
+            ChiTietHDB_Command = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                InHDB f = new InHDB(SelectedHDB.SoHD);
+                f.ShowDialog();
+            });
+
         }
 
         #region Method

@@ -258,12 +258,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             InHD_Command = new RelayCommand<object>((p) =>
             {
-                return DangNhap;
+                return true;
             }, (p) =>
             {
-
-
-                //them hoa don
+                InHDN f = new InHDN(SoHD);
+                f.ShowDialog();
             });
         }
 

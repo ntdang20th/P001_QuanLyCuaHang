@@ -78,6 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="InHDB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InHDN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,6 +95,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\ChuyenSoThanhChu.cs" />
+    <Compile Include="InHDB.xaml.cs">
+      <DependentUpon>InHDB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InHDN.xaml.cs">
+      <DependentUpon>InHDN.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -204,6 +218,8 @@
     <Compile Include="MVVM\ViewModel\HangViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HoaDonBanViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HoaDonNhapViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\InHDBViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\InHDNViewModel.cs" />
     <Compile Include="MVVM\ViewModel\KhachHangViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\NhaCungCapViewModel.cs" />
