@@ -161,6 +161,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 DataProvider.Instance.DB.HoaDonBans.Add(HDB);
                 DataProvider.Instance.DB.SaveChanges();
                 ListCTHDB = new ObservableCollection<ChiTietHDB>();
+
+                MainViewModel.chualuu = true;
             });
 
             ThemSP_Command = new RelayCommand<object>((p) =>
@@ -223,6 +225,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ThanhTienBangChu = "";
                 DateString = "";
                 SelectedHang = null;
+
+                MainViewModel.chualuu = false;
             });
 
             XoaSP_Command = new RelayCommand<object>((p) =>
@@ -266,6 +270,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ThanhTienBangChu = "";
                 DateString = "";
                 SelectedHang = null;
+
+                MainViewModel.chualuu = false;
             });
 
             InHD_Command = new RelayCommand<Grid>((p) =>
@@ -306,10 +312,24 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             DateTime today = DateTime.Today;
             int count = DataProvider.Instance.DB.HoaDonBans.Where(x => x.NgayBan == today).Count();
 
-            string t = "00000" + (count + 1);
+            string t = "00000" + (count++ + 1);
             t = t.Substring(t.Length - 5, 5);
 
-            return "HDB_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+            string id = "HDB_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+
+            var ds = DataProvider.Instance.DB.HoaDonBans.Where(x => x.SoHD == id).ToList();
+            while (ds.Count > 0)
+            {
+                t = "00000" + (count++ + 1);
+                t = t.Substring(t.Length - 5, 5);
+
+                id = "HDB_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+
+                ds = DataProvider.Instance.DB.HoaDonBans.Where(x => x.SoHD == id).ToList();
+            }
+
+
+            return id;
         }
 
         void TinhThanhTienBangSo()

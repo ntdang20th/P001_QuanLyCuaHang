@@ -25,6 +25,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <materialDesign:Card  Grid.Row="0"
@@ -45,7 +46,7 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <RadioButton Content="Ngày" Grid.Column="0"
-                            FontSize="13" Margin="10 0 0 0"
+                            FontSize="13" Margin="10 0 0 0" IsChecked="True"
                             Style="{StaticResource FillterRadioButtonTheme}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Checked">
@@ -147,6 +148,15 @@
                     CommandParameter="{Binding ElementName=DateGrid}"
                     Style="{StaticResource ButtonChucNang}"/>
 
+            <Button Grid.Column="2" 
+                    Content="Dọn rác"
+                    Width="120"
+                    Height="50"
+                    FontSize="16"
+                    Command="{Binding DonRacCommand}"
+                    CommandParameter="{Binding ElementName=DateGrid}"
+                    Style="{StaticResource ButtonChucNang}"/>
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -215,7 +225,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel 
+                    <StackPanel  Grid.Row="0"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center">
@@ -224,19 +234,30 @@
                                                      Width="35" 
                                                      Height="35"
                                                      HorizontalAlignment="Center"/>
-                        <TextBlock Text="Lợi nhuận"
-                                       FontSize="20" Margin="10 0 0 0"
+                        <TextBlock Text="{Binding Status}"
+                                       FontSize="20" Margin="5 0 0 0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="1"
-                               FontSize="18"
-                               Foreground="White"
-                               HorizontalAlignment="Center"
-                               Text="{Binding LoiNhuan, StringFormat={}{0:#,# VNĐ}}"/>
+                    <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Home" 
+                                                     Foreground="White" 
+                                                     Width="35" 
+                                                     Height="35"
+                                                     HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding GTKho}"
+                                       FontSize="20" Margin="5 0 0 0"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
 
             </materialDesign:Card>

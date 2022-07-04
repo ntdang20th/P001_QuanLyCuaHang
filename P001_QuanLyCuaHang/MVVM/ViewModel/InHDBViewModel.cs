@@ -60,6 +60,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         #region Command
         public ICommand XemHDCommand { get; set; }
         public ICommand InHDCommand { get; set; }
+        public ICommand HoanTacCommand { get; set; }
         #endregion
 
         public InHDBViewModel()
@@ -105,6 +106,37 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 {
 
                 }
+            });
+
+            HoanTacCommand = new RelayCommand<Grid>((p) =>
+            {
+                if (String.IsNullOrEmpty(SoHD) || SelectedSoHD == null)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                //+ trong kho
+                foreach (ChiTietHDB i in ListCTHDB)
+                {
+                    var x = DataProvider.Instance.DB.Hangs.Where(t => t.Id == i.IdHang).SingleOrDefault();
+                    x.SoLuongTon += i.SoLuong;
+                    DataProvider.Instance.DB.SaveChanges();
+                }
+
+                //hoan tac listcthd
+                DataProvider.Instance.DB.ChiTietHDBs.RemoveRange(DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == SoHD));
+                DataProvider.Instance.DB.SaveChanges();
+
+
+
+                //xoa hoa don
+                DataProvider.Instance.DB.HoaDonBans.Remove(SelectedSoHD);
+                DataProvider.Instance.DB.SaveChanges();
+
+                ListHDB = null;
+                ListCTHDB = null;
+
+                MessageBox.Show("Đã hoàn tác!");
             });
         }
 

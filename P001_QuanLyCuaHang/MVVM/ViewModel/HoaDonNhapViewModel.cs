@@ -149,6 +149,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 DataProvider.Instance.DB.HoaDonNhaps.Add(HDN);
                 DataProvider.Instance.DB.SaveChanges();
                 ListCTHDN = new ObservableCollection<ChiTietHDN>();
+
+                MainViewModel.chualuu = true;
             });
 
             ThemSP_Command = new RelayCommand<object>((p) =>
@@ -213,6 +215,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ThanhTienBangChu = "";
                 DateString = "";
                 SelectedHang = null;
+
+                MainViewModel.chualuu = false;
             });
 
             XoaSP_Command = new RelayCommand<object>((p) =>
@@ -254,6 +258,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ThanhTienBangChu = "";
                 DateString = "";
                 SelectedHang = null;
+
+                MainViewModel.chualuu = false;
             });
 
             InHD_Command = new RelayCommand<object>((p) =>
@@ -283,10 +289,24 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             DateTime today = DateTime.Today;
             int count = DataProvider.Instance.DB.HoaDonNhaps.Where(x => x.NgayNhap == today).Count();
 
-            string t = "00000" + (count+1);
+            string t = "00000" + (count++ +1);
             t = t.Substring(t.Length - 5, 5);
 
-            return "HDN_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+            string id = "HDN_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+
+            var ds = DataProvider.Instance.DB.HoaDonNhaps.Where(x => x.SoHD == id).ToList();
+            while(ds.Count > 0)
+            {
+                t = "00000" + (count++ + 1);
+                t = t.Substring(t.Length - 5, 5);
+
+                id = "HDN_" + today.Year + "_" + today.Month + "_" + today.Day + "_" + t;
+
+                ds = DataProvider.Instance.DB.HoaDonNhaps.Where(x => x.SoHD == id).ToList();
+            }
+
+
+            return id;
         }
 
         void TinhThanhTienBangSo()

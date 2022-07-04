@@ -90,7 +90,7 @@
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá nhập"
                                       IsReadOnly="True"
-                                      Text="{Binding GiaNhap}"
+                                      Text="{Binding SelectedHang.GiaNhap}"
                                   Grid.Row="1"
                                   HorizontalAlignment="Center"
                                   Width="160"
@@ -176,6 +176,7 @@
                                     <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
                                     <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding TenHang}"/>
                                     <GridViewColumn Header ="ĐVT" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
+                                    <GridViewColumn Header ="Giá nhập" DisplayMemberBinding="{Binding GiaNhap}"/>
                                     <GridViewColumn Header ="SLT" DisplayMemberBinding="{Binding SoLuongTon}"/>
                                     <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
                                 </GridView>

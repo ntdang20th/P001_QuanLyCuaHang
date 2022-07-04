@@ -44,8 +44,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         private int _XuatKho_GT;
         public int XuatKho_GT { get => _XuatKho_GT; set { _XuatKho_GT = value; OnPropertyChanged(); } }
 
-        private int _LoiNhuan;
-        public int LoiNhuan { get => _LoiNhuan; set { _LoiNhuan = value; OnPropertyChanged(); } }
+        private string _Status;
+        public string Status { get => _Status; set { _Status = value; OnPropertyChanged(); } }
+
+        private string _GTKho;
+        public string GTKho { get => _GTKho; set { _GTKho = value; OnPropertyChanged(); } }
 
         private bool _TuyChon = false;
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
@@ -95,11 +98,13 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public ICommand ThongKe_Command { get; set; }
         public ICommand ChiTietHDB_Command { get; set; }
         public ICommand ChiTietHDN_Command { get; set; }
+        public ICommand DonRacCommand { get; set; }
         #endregion
 
         public ThongKeViewModel()
         {
             LayDSHetHang();
+            TinhHoanVon();
 
             Ngay_Command = new RelayCommand<object>((p) =>
             {
@@ -223,6 +228,32 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 f.ShowDialog();
             });
 
+            DonRacCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                List<string> listCTHDB = DataProvider.Instance.DB.ChiTietHDBs.Select(t=>t.IdHDB).Distinct().ToList();
+                foreach(var i in ListHDB.ToList())
+                {
+                    if (!listCTHDB.Contains(i.SoHD))
+                    {
+                        ListHDB.Remove(i);
+                        DataProvider.Instance.DB.HoaDonBans.Remove(i);
+                    }
+                }
+                
+                List<string> listCTHDN = DataProvider.Instance.DB.ChiTietHDNs.Select(t => t.IdHDN).Distinct().ToList();
+                foreach (var i in ListHDN.ToList())
+                {
+                    if (!listCTHDN.Contains(i.SoHD))
+                    {
+                        ListHDN.Remove(i);
+                        DataProvider.Instance.DB.HoaDonNhaps.Remove(i);
+                    }
+                }
+                DataProvider.Instance.DB.SaveChanges();
+            });
         }
 
         #region Method
@@ -306,7 +337,6 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 XuatKho_GT += i.ThanhTien;
             }
 
-            LoiNhuan = XuatKho_GT - NhapKho_GT;
         }
 
         void LayDSKHvNCC()
@@ -351,6 +381,42 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ListHetHang.Add(hang);
                 i++;
             }
+        }
+
+        void TinhHoanVon()
+        {
+            List<Hang> ListHang = new List<Hang>(DataProvider.Instance.DB.Hangs);
+            List<HoaDonNhap> ListNhap = new List<HoaDonNhap>( DataProvider.Instance.DB.HoaDonNhaps);
+            List<HoaDonBan> ListXuat= new List<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans);
+
+            List<ChiTietHDB> ListCTXuat;
+            List<ChiTietHDN> ListCTNhap;
+
+            int daban = 0, danhap = 0, gtkho = 0;
+
+            foreach (var i in ListXuat)
+            {
+                ListCTXuat = new List<ChiTietHDB>(DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == i.SoHD));
+                tinhThanhTienHDB(ListCTXuat);
+                i.ThanhTien = ListCTXuat.Sum(x => x.ThanhTien);
+                daban += i.ThanhTien;
+            }
+
+            foreach (var i in ListNhap)
+            {
+                ListCTNhap = new List<ChiTietHDN>(DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == i.SoHD));
+                tinhThanhTienHDN(ListCTNhap);
+                i.ThanhTien = ListCTNhap.Sum(x => x.ThanhTien);
+                danhap += i.ThanhTien;
+            }
+
+            foreach(Hang i in ListHang)
+            {
+                gtkho += (int)(i.GiaBan * i.SoLuongTon);
+            }
+
+            Status = "Hoàn vốn: " +daban/danhap*100 + "%";
+            GTKho = "Giá trị kho: " +gtkho;
         }
         #endregion
     }

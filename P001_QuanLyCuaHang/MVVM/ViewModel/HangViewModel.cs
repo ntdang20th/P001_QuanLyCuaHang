@@ -80,12 +80,13 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public HangViewModel()
         {
             ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs.Where(t=>t.An == 0).OrderBy(t=>t.TenHang));
+            SetGiaNhap();
             ListDonViTinh = new ObservableCollection<DonViTinh>(DataProvider.Instance.DB.DonViTinhs);
 
 
             Them_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(TenHang) || GiaBan<=0 || Slton<=0 || SelectedDVT == null)
+                if (String.IsNullOrEmpty(TenHang) || GiaBan<0 || Slton<0 || SelectedDVT == null)
                     return false;
 
                 var ds = DataProvider.Instance.DB.Hangs.Where(t => t.TenHang == TenHang);
@@ -105,7 +106,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(TenHang) || GiaBan <= 0 || Slton <= 0 || SelectedHang==null)
+                if (String.IsNullOrEmpty(TenHang) || GiaBan < 0 || Slton < 0 || SelectedHang==null)
                     return false;
                 return true;
             }, (p) =>
@@ -142,5 +143,22 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs.Where(t => t.TenHang.Contains(p.Text)).ToList());
             });
         }
+
+        #region Method
+        void SetGiaNhap()
+        {
+            foreach(Hang i in ListHang)
+            {
+                try
+                {
+                    i.GiaNhap = (int)DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHang == i.Id).OrderByDescending(t => t.HoaDonNhap.NgayNhap).Select(t => t.DonGiaNhap).FirstOrDefault();
+                }
+                catch
+                {
+                    i.GiaBan = 0;
+                }
+            }
+        }
+        #endregion
     }
 }

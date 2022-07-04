@@ -18,6 +18,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         private Nullable<int> _SoLuongTon;
         private Nullable<int> _IdDVT;
         private Nullable<int> _An;
+        public int  GiaNhap { get; set; }
 
 
         public int Id { get; set; }

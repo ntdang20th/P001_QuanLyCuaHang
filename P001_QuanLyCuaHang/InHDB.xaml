@@ -27,8 +27,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="110"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
             <TextBox  materialDesign:HintAssist.Hint="Nhập số HD"
@@ -56,18 +57,26 @@
 
             <Button Style="{StaticResource ButtonChucNang}"
                     Margin="0 10"
-                            Content="Xem HD" Width="100" 
+                            Content="Xem HD" Width="80" 
                             HorizontalAlignment="Center"
                             Grid.Column="3" 
                             Command="{Binding XemHDCommand}"/>
 
             <Button Style="{StaticResource ButtonChucNang}"
-                            Content="In HD" Width="100" 
+                            Content="In HD" Width="80" 
                     Margin="0 10"
                             HorizontalAlignment="Center"
                             Grid.Column="4"
                             Command="{Binding InHDCommand}"
                     CommandParameter="{Binding ElementName=printGrid}"/>
+            
+            <Button Style="{StaticResource ButtonChucNang}"
+                            Content="Hoàn HD" Width="80" 
+                    Margin="0 10"
+                            HorizontalAlignment="Center"
+                            Grid.Column="5"
+                    Background="OrangeRed"
+                            Command="{Binding HoanTacCommand}"/>
         </Grid>
 
         <!--hoa don-->

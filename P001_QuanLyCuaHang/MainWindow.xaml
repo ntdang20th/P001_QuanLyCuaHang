@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
         AllowsTransparency="True"
         Background="Transparent"
         Title="MainWindow" Height="640" Width="1200">
@@ -84,23 +85,31 @@
                                         </StackPanel>
                                     </RadioButton>
 
-                                   
-
-                                    <RadioButton Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}" Name="rdbNhap"
                                             Command="{Binding NhapHangCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="InboxArrowDown" 
                                                                      Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Nhập Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <i:InvokeCommandAction Command="{Binding CheckHDNCommand}" CommandParameter="{Binding ElementName=rdbNhap}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </RadioButton>
 
-                                    <RadioButton Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}" Name="rdbBan"
                                             Command="{Binding BanHangCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="InboxArrowUp" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Bán Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <i:InvokeCommandAction Command="{Binding CheckHDBCommand}" CommandParameter="{Binding ElementName=rdbBan}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </RadioButton>
 
                                     <RadioButton Style="{StaticResource Button_Dashboard}"
