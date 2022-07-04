@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -47,8 +48,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         private string _Status;
         public string Status { get => _Status; set { _Status = value; OnPropertyChanged(); } }
 
-        private string _GTKho;
-        public string GTKho { get => _GTKho; set { _GTKho = value; OnPropertyChanged(); } }
+        private string _GTStatus;
+        public string GTStatus { get => _GTStatus; set { _GTStatus = value; OnPropertyChanged(); } }
+
+        private int _GTKho;
+        public int GTKho { get => _GTKho; set { _GTKho = value; OnPropertyChanged(); } }
 
         private bool _TuyChon = false;
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
@@ -233,6 +237,12 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 return true;
             }, (p) =>
             {
+                if (ListHDB == null || ListHDN == null)
+                {
+                    MessageBox.Show("Đã dọn xong!");
+                    return;
+                }
+
                 List<string> listCTHDB = DataProvider.Instance.DB.ChiTietHDBs.Select(t=>t.IdHDB).Distinct().ToList();
                 foreach(var i in ListHDB.ToList())
                 {
@@ -253,6 +263,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                     }
                 }
                 DataProvider.Instance.DB.SaveChanges();
+                MessageBox.Show("Đã dọn xong!");
             });
         }
 
@@ -392,7 +403,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             List<ChiTietHDB> ListCTXuat;
             List<ChiTietHDN> ListCTNhap;
 
-            int daban = 0, danhap = 0, gtkho = 0;
+            double daban = 0, danhap = 0;
+            GTKho = 0;
 
             foreach (var i in ListXuat)
             {
@@ -412,11 +424,19 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             foreach(Hang i in ListHang)
             {
-                gtkho += (int)(i.GiaBan * i.SoLuongTon);
+                GTKho += (int)(i.GiaBan * i.SoLuongTon);
             }
-
-            Status = "Hoàn vốn: " +daban/danhap*100 + "%";
-            GTKho = "Giá trị kho: " +gtkho;
+            if(daban <= danhap)
+            {
+                Status = "Hoàn vốn: ";
+                GTStatus = String.Format("{0:0.00}", daban/danhap * 100) + "%";
+            }
+            else
+            {
+                Status = "Lợi nhuận: ";
+                GTStatus = String.Format("{0:#,#}", daban - danhap) + "VNĐ";
+            }
+             
         }
         #endregion
     }

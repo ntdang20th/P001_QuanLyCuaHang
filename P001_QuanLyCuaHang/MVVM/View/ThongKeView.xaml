@@ -231,15 +231,17 @@
                                     VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="CurrencyUsd" 
                                                      Foreground="White" 
-                                                     Width="35" 
-                                                     Height="35"
+                                                     Width="30" 
+                                                     Height="30"
                                                      HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding Status}"
-                                       FontSize="20" Margin="5 0 0 0"
-                                       FontWeight="Bold"
-                                       Foreground="White"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                        <TextBlock  FontSize="20" Margin="5 0 0 0"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                            <Run Text="{Binding Status}"/>
+                            <Run FontSize="18" FontWeight="Normal" Text="{Binding GTStatus}"/>
+                        </TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
@@ -248,15 +250,17 @@
                                     VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="Home" 
                                                      Foreground="White" 
-                                                     Width="35" 
-                                                     Height="35"
+                                                     Width="30" 
+                                                     Height="30"
                                                      HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding GTKho}"
-                                       FontSize="20" Margin="5 0 0 0"
-                                       FontWeight="Bold"
-                                       Foreground="White"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                        <TextBlock FontSize="20" Margin="5 0 0 0"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            <Run Text="Giá trị kho: "/>
+                            <Run FontSize="18" FontWeight="Normal" Text="{Binding GTKho, StringFormat={}{0:#,# VNĐ}}"/>
+                        </TextBlock>
                     </StackPanel>
                 </Grid>
 
@@ -327,7 +331,13 @@
                                     <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
                                     <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
                                     <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
-                                    <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
+                                    <GridViewColumn Header ="Thành tiền">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ThanhTien, StringFormat={}{0:#,#}}" TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                             <i:Interaction.Triggers>
@@ -346,7 +356,13 @@
                                     <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
                                     <GridViewColumn Header ="Ngày bán" DisplayMemberBinding="{Binding NgayBan, StringFormat='MM/dd/yyyy'}"/>
                                     <GridViewColumn Header ="Khách hàng" DisplayMemberBinding="{Binding KhachHang.HoTen}"/>
-                                    <GridViewColumn Header ="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
+                                    <GridViewColumn Header ="Thành tiền">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ThanhTien, StringFormat={}{0:#,#}}" TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                             <i:Interaction.Triggers>
@@ -365,7 +381,13 @@
                                     <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding MaKh}"/>
                                     <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding TenKH}"/>
                                     <GridViewColumn Header ="Số đơn đã mua" DisplayMemberBinding="{Binding SLHD}"/>
-                                    <GridViewColumn Header ="Tổng thành tiền" DisplayMemberBinding="{Binding TongTT}"/>
+                                    <GridViewColumn Header ="Tổng thành tiền">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding TongTT, StringFormat={}{0:#,#}}" TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -379,7 +401,13 @@
                                     <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding Id}"/>
                                     <GridViewColumn Header ="Tên NCC" DisplayMemberBinding="{Binding TenNCC}"/>
                                     <GridViewColumn Header ="Số đơn đã nhập" DisplayMemberBinding="{Binding SLHD}"/>
-                                    <GridViewColumn Header ="Tổng thành tiền" DisplayMemberBinding="{Binding TongTT}"/>
+                                    <GridViewColumn Header ="Tổng thành tiền">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding TongTT, StringFormat={}{0:#,#}}" TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

@@ -90,7 +90,7 @@
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá nhập"
                                       IsReadOnly="True"
-                                      Text="{Binding SelectedHang.GiaNhap}"
+                                      Text="{Binding SelectedHang.GiaNhap, StringFormat={}{0:#,# VNĐ}}"
                                   Grid.Row="1"
                                   HorizontalAlignment="Center"
                                   Width="160"
@@ -114,7 +114,7 @@
                                   VerticalAlignment="Center" />
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá bán"
-                                  Text="{Binding GiaBan}"
+                                  Text="{Binding GiaBan, StringFormat={}{0:#,# VNĐ}}"
                                   Grid.Row="1" 
                                   HorizontalAlignment="Center"
                                   Width="160"

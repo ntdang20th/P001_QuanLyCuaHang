@@ -72,7 +72,7 @@
                                     <GridViewColumn Width="auto" Header ="Giá">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding DonGiaBan}" TextAlignment="Right" />
+                                                <TextBlock Text="{Binding DonGiaBan, StringFormat={}{0:#,#}}" TextAlignment="Right" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -81,7 +81,7 @@
                                     <GridViewColumn Width="auto" Header ="TT">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding ThanhTien}" TextAlignment="Right" />
+                                                <TextBlock Text="{Binding ThanhTien, StringFormat={}{0:#,#}}" TextAlignment="Right" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -97,7 +97,7 @@
                            VerticalAlignment="Center" Grid.Row="4" 
                            TextWrapping="Wrap">
                         <Run Text="Thành tiền (Bằng số): "/>
-                        <Run Text="{Binding ThanhTienBangSo}"/>
+                        <Run Text="{Binding ThanhTienBangSo, StringFormat={}{0:#,# VNĐ}}"/>
                         <LineBreak/>
                         <Run Text="Thành tiền (Bằng chữ): "/>
                         <Run Text="{Binding ThanhTienBangChu}"/>

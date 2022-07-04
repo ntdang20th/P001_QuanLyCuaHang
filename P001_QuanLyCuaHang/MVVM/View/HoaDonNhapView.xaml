@@ -178,7 +178,7 @@
                             <TextBox materialDesign:HintAssist.Hint="Giá nhập"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Margin="2 5"
-                                     Text="{Binding GiaNhap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding GiaNhap, StringFormat={}{0:#,# VNĐ}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="Black"
                              VerticalContentAlignment="Bottom" VerticalAlignment="Center"
                              Padding="0"
@@ -187,7 +187,7 @@
                                 <TextBlock Foreground="Black" Margin="5" Grid.ColumnSpan="2"
                                VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">
                         <Run Text="Thành tiền: "/>
-                        <Run Text="{Binding ThanhTien}"/>
+                        <Run Text="{Binding ThanhTien, StringFormat={}{0:#,# VNĐ}}"/>
                             </TextBlock>
 
                         </Grid>
@@ -225,7 +225,13 @@
                                                     <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
                                                     <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding TenHang}"/>
                                                     <GridViewColumn Header ="Đơn vị tính" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
-                                                    <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
+                                                <GridViewColumn Header ="Giá bán">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding GiaBan, StringFormat={}{0:#,#}}" TextAlignment="Right" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
                                                     <GridViewColumn Header ="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
                                                 </GridView>
                                             </ListView.View>
