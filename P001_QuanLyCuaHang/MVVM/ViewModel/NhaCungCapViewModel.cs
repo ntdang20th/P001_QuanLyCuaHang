@@ -66,6 +66,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             {
                 if (String.IsNullOrEmpty(Ten) || String.IsNullOrEmpty(Sdt) || String.IsNullOrEmpty(DiaChi))
                     return false;
+
+                var ds = DataProvider.Instance.DB.NhaCungCaps.Where(t => t.Ten == Ten);
+                if (ds == null || ds.Count() != 0)
+                    return false;
+
                 return true;
             }, (p) =>
             {
@@ -79,7 +84,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(Ten) || String.IsNullOrEmpty(Sdt) || String.IsNullOrEmpty(DiaChi))
+                if (String.IsNullOrEmpty(Ten) || String.IsNullOrEmpty(Sdt) || String.IsNullOrEmpty(DiaChi) || SelectedNhaCungCap == null)
                     return false;
                 return true;
             }, (p) =>
@@ -104,8 +109,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 var ncc = DataProvider.Instance.DB.NhaCungCaps.Where(t => t.Id == SelectedNhaCungCap.Id).SingleOrDefault();
                 ncc.An = 1;
                 DataProvider.Instance.DB.SaveChanges();
+                ListNhaCungCap.Remove(ncc);
                 MessageBox.Show("Đã xóa", "Thông báo");
-                ListNhaCungCap = new ObservableCollection<NhaCungCap>(DataProvider.Instance.DB.NhaCungCaps.Where(x => x.An == 0));
             });
 
             EnterCommand = new RelayCommand<TextBox>((p) =>

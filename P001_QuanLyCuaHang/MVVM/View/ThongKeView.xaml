@@ -364,6 +364,22 @@
                         </ListView>
                     </Grid>
                 </TabItem>
+
+                <TabItem Header="Sắp hết hàng">
+                    <Grid>
+                        <ListView ItemsSource="{Binding ListHetHang}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}"/>
+                                    <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding Ten}"/>
+                                    <GridViewColumn Header ="Đã nhập" DisplayMemberBinding="{Binding SoLuongNhap}"/>
+                                    <GridViewColumn Header ="Đã bán" DisplayMemberBinding="{Binding SoLuongBan}"/>
+                                    <GridViewColumn Header ="Còn lại" DisplayMemberBinding="{Binding ConLai}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
             </TabControl>
         </Grid>
     </Grid>

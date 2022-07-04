@@ -52,6 +52,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             {
                 if (String.IsNullOrEmpty(Ten))
                     return false;
+
+                var ds = DataProvider.Instance.DB.DonViTinhs.Where(t => t.TenDonViTinh == Ten);
+                if (ds == null || ds.Count() != 0)
+                    return false;
+
                 return true;
             }, (p) =>
             {
@@ -65,7 +70,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(Ten))
+                if (String.IsNullOrEmpty(Ten) || SelectedDonViTinh == null)
                     return false;
                 return true;
             }, (p) =>

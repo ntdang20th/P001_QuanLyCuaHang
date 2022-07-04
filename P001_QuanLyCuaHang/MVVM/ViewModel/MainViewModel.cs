@@ -51,6 +51,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             ThongKeVM = new ThongKeViewModel();
             DVTVM = new DonViTinhViewModel();
 
+            CurrentView = ThongKeVM;
             KhoCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
                 CurrentView = KhoVM;
             });

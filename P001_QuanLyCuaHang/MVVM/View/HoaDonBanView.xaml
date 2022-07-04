@@ -153,9 +153,10 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox materialDesign:HintAssist.Hint="Số lượng mua"
                                  MaxWidth="100" Padding="0"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="Black"
-                                         VerticalAlignment="Center" />
+                                         VerticalAlignment="Center" Height="25" Margin="0,-7,0,0" />
                                 <TextBlock Grid.Column="1" Foreground="Black"
                                    FontSize="13"
                                    VerticalAlignment="Center">

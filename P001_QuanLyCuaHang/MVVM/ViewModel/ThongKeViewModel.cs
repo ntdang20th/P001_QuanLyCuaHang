@@ -26,6 +26,9 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         private ObservableCollection<object> _ListNCC;
         public ObservableCollection<object> ListNCC { get => _ListNCC; set { _ListNCC = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<object> _ListHetHang;
+        public ObservableCollection<object> ListHetHang { get => _ListHetHang; set { _ListHetHang = value; OnPropertyChanged(); } }
         #endregion
 
         #region Properties
@@ -96,6 +99,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public ThongKeViewModel()
         {
+            LayDSHetHang();
 
             Ngay_Command = new RelayCommand<object>((p) =>
             {
@@ -325,6 +329,27 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 int count = ListHDN.Where(t => t.IdNCC == i).Count();
                 var ncc = ListHDN.Where(t => t.IdNCC == i).Select(x => new { TenNCC = x.NhaCungCap.Ten, SLHD = count, TongTT = x.ChiTietHDNs.Sum(y => y.ThanhTien) });
                 ListNCC.Add(ncc);
+            }
+        }
+
+
+        void LayDSHetHang()
+        {
+            var listHang = DataProvider.Instance.DB.Hangs.OrderBy(x=>x.SoLuongTon).ToList();
+            ListHetHang = new ObservableCollection<object>();
+            var ListCTHDN = DataProvider.Instance.DB.ChiTietHDNs.ToList();
+            var ListCTHDB = DataProvider.Instance.DB.ChiTietHDBs.ToList();
+            int i = 1;
+            foreach(Hang h in listHang)
+            {
+                int idhang = h.Id;
+                var listNhap = ListCTHDN.Where(x => x.IdHang == idhang);
+                var listBan = ListCTHDB.Where(x => x.IdHang == idhang);
+                int slNhap = (int)(listNhap.Count()  == 0 ? 0 : listNhap.Sum(x => x.SoLuong));
+                int slBan = (int)(listBan.Count() == 0 ? 0 : listBan.Sum(x => x.SoLuong));
+                var hang = ListCTHDN.Where(t => t.IdHang == idhang).Select(x => new { STT = i, Ten = x.Hang.TenHang, SoLuongNhap = slNhap, SoLuongBan = slBan, ConLai = h.SoLuongTon }).Distinct();
+                ListHetHang.Add(hang);
+                i++;
             }
         }
         #endregion

@@ -153,7 +153,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             ThemSP_Command = new RelayCommand<object>((p) =>
             {
-                if (!DangNhap || SelectedHang == null || GiaNhap == 0)
+                if (!DangNhap || SelectedHang == null || GiaNhap == 0 || SoLuong <= 0 || GiaNhap <= 0)
                     return false;
                 return true;
             }, (p) =>

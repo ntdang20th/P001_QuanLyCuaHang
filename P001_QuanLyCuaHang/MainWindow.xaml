@@ -76,72 +76,70 @@
                                 <!--Menu button-->
                                 <StackPanel Grid.Row="2">
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding KhoCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Home" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="Home" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Kho hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
-                                            Command="{Binding DVTCommand}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Home" Margin="10"/>
-                                            <TextBlock Text="Đơn vị tính" Style="{StaticResource Resource_TextBlock}"/>
-                                        </StackPanel>
-                                    </Button>
+                                   
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding NhapHangCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="InboxArrowDown" 
+                                                                     Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Nhập Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding BanHangCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="CashMultiple" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="InboxArrowUp" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Bán Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding KhachHangCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Khách Hàng" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding NhaCUngCapCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="AccountMultipleOutline" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="AccountGroup" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Nhà cung cấp" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
 
 
-                                    <Button Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding ThongKeCommand}">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="CalendarLockOutline" Margin="10"/>
+                                            <materialDesign:PackIcon Kind="ChartBarStacked" Margin="15 10 10 10" Width="20" Height="20"/>
                                             <TextBlock Text="Thống Kê" Style="{StaticResource Resource_TextBlock}"/>
                                         </StackPanel>
-                                    </Button>
+                                    </RadioButton>
+                                    
+                                    <RadioButton Style="{StaticResource Button_Dashboard}"
+                                            Command="{Binding DVTCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="PencilRuler" Margin="15 10 10 10" Width="20" Height="20"/>
+                                            <TextBlock Text="Đơn vị tính" Style="{StaticResource Resource_TextBlock}"/>
+                                        </StackPanel>
+                                    </RadioButton>
+                                    
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="3" Margin="0 0 0 20">
-                                    <Button Style="{StaticResource Button_Dashboard}" VerticalAlignment="Bottom">
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Logout" Margin="10"/>
-                                            <TextBlock Text="Đăng xuất" Style="{StaticResource Resource_TextBlock}"/>
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
+                               
+
                             </Grid>
                         </StackPanel>
 

@@ -79,14 +79,19 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public HangViewModel()
         {
-            ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs);
+            ListHang = new ObservableCollection<Hang>(DataProvider.Instance.DB.Hangs.Where(t=>t.An == 0).OrderBy(t=>t.TenHang));
             ListDonViTinh = new ObservableCollection<DonViTinh>(DataProvider.Instance.DB.DonViTinhs);
 
 
             Them_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(TenHang) || GiaBan==0 || Slton==0 || SelectedDVT == null)
+                if (String.IsNullOrEmpty(TenHang) || GiaBan<=0 || Slton<=0 || SelectedDVT == null)
                     return false;
+
+                var ds = DataProvider.Instance.DB.Hangs.Where(t => t.TenHang == TenHang);
+                if (ds == null || ds.Count() != 0)
+                    return false;
+
                 return true;
             }, (p) =>
             {
@@ -100,13 +105,16 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(TenHang) || GiaBan == 0 || Slton == 0)
+                if (String.IsNullOrEmpty(TenHang) || GiaBan <= 0 || Slton <= 0 || SelectedHang==null)
                     return false;
                 return true;
             }, (p) =>
             {
-                var dvt = DataProvider.Instance.DB.Hangs.Where(t => t.Id == SelectedHang.Id).SingleOrDefault();
-                dvt.TenHang = TenHang;
+                var hang = DataProvider.Instance.DB.Hangs.Where(t => t.Id == SelectedHang.Id).SingleOrDefault();
+                hang.TenHang = TenHang;
+                hang.DonViTinh = SelectedDVT;
+                hang.SoLuongTon = Slton;
+                hang.GiaBan = GiaBan;
                 DataProvider.Instance.DB.SaveChanges();
                 MessageBox.Show("Đã sửa", "Thông báo");
                 //SelectedItem.TenHang = DisplayName;

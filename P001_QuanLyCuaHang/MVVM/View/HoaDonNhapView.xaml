@@ -156,6 +156,7 @@
                                          MaxWidth="100" Padding="0"
                                          Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="Black"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          VerticalAlignment="Center" />
                                 <TextBlock Grid.Column="1" Foreground="Black"
                                    FontSize="13"

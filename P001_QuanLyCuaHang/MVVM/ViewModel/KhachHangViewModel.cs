@@ -75,11 +75,15 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         public KhachHangViewModel()
         {
-            ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(x=>x.An==0));
+            ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(x => x.An == 0));
 
             Them_Command = new RelayCommand<object>((p) =>
             {
                 if (String.IsNullOrEmpty(HoTen))
+                    return false;
+
+                var ds = DataProvider.Instance.DB.KhachHangs.Where(t => t.HoTen == HoTen);
+                if (ds == null || ds.Count() != 0)
                     return false;
 
                 return true;
@@ -96,7 +100,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Sua_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(HoTen))
+                if (String.IsNullOrEmpty(HoTen) || SelectedKhachHang == null)
                     return false;
 
                 return true;
@@ -122,8 +126,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 var khCu = DataProvider.Instance.DB.KhachHangs.Where(t => t.MaKh == SelectedKhachHang.MaKh).SingleOrDefault();
                 khCu.An = 1;
                 DataProvider.Instance.DB.SaveChanges();
+                ListKhachHang.Remove(khCu);
                 MessageBox.Show("Đã xóa", "Thông báo");
-                ListKhachHang = new ObservableCollection<KhachHang>(DataProvider.Instance.DB.KhachHangs.Where(x => x.An == 0));
             });
 
             EnterCommand = new RelayCommand<TextBox>((p) =>
