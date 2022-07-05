@@ -23,7 +23,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         #endregion
 
         //hoadon
-        public string _SoHD = "";
+        public string _SoHD = "1";
         public string SoHD { get => _SoHD; set { _SoHD = value; OnPropertyChanged(); } }
 
         public string _DateString = "";
@@ -68,13 +68,14 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             //hoa don ban
             ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps);
 
-            XemHDCommand = new RelayCommand<Grid>((p) =>
+            XemHDCommand = new RelayCommand<TextBox>((p) =>
             {
                 if (String.IsNullOrEmpty(SoHD))
                     return false;
                 return true;
             }, (p) =>
             {
+                SoHD = p.Text;
                 HoaDonNhap hdn = DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.SoHD == SoHD).SingleOrDefault();
 
                 if (hdn == null)

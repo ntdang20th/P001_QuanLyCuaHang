@@ -114,7 +114,7 @@
                                   VerticalAlignment="Center" />
 
                             <TextBox  materialDesign:HintAssist.Hint="Giá bán"
-                                  Text="{Binding GiaBan, StringFormat={}{0:#,# VNĐ}}"
+                                  Text="{Binding GiaBan, StringFormat={}{0:#,#}}"
                                   Grid.Row="1" 
                                   HorizontalAlignment="Center"
                                   Width="160"

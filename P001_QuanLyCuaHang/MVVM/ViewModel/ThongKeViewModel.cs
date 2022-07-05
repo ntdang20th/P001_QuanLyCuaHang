@@ -54,6 +54,9 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         private int _GTKho;
         public int GTKho { get => _GTKho; set { _GTKho = value; OnPropertyChanged(); } }
 
+        private int _GTBan;
+        public int GTBan { get => _GTBan; set { _GTBan = value; OnPropertyChanged(); } }
+
         private bool _TuyChon = false;
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
 
@@ -404,7 +407,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             List<ChiTietHDN> ListCTNhap;
 
             double daban = 0, danhap = 0;
-            GTKho = 0;
+            GTKho = 0; GTBan = 0;
 
             foreach (var i in ListXuat)
             {
@@ -425,6 +428,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             foreach(Hang i in ListHang)
             {
                 GTKho += (int)(i.GiaBan * i.SoLuongTon);
+
+                var gianhap = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHang == i.Id).OrderByDescending(t => t.Id).Select(t=>t.DonGiaNhap).First();
+                if (gianhap == null)
+                    break;
+                GTBan += (int)(i.SoLuongTon * (int)gianhap);
             }
             if(daban <= danhap)
             {

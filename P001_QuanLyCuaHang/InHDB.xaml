@@ -37,7 +37,7 @@
                       Name="txtSoHD"
                       Text="{Binding SoHD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   HorizontalAlignment="Center" 
-                                  Width="160"
+                                  Width="140"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   VerticalAlignment="Center" />
             
@@ -60,7 +60,8 @@
                             Content="Xem HD" Width="80" 
                             HorizontalAlignment="Center"
                             Grid.Column="3" 
-                            Command="{Binding XemHDCommand}"/>
+                            Command="{Binding XemHDCommand}"
+                    CommandParameter="{Binding ElementName=txtSoHD}"/>
 
             <Button Style="{StaticResource ButtonChucNang}"
                             Content="In HD" Width="80" 

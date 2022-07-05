@@ -39,6 +39,7 @@
 
                     <TextBox  materialDesign:HintAssist.Hint="ID"
                               Text="{Binding SelectedNhaCungCap.Id}"
+                              IsReadOnly="True"
                             Grid.Row="0" Grid.Column="0"
                             HorizontalAlignment="Center"
                             Width="200"

@@ -118,7 +118,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 else if (result == DialogResult.No)
                 {
                     //hủy
-                    var lastBill = DataProvider.Instance.DB.HoaDonNhaps.OrderByDescending(t => t.NgayNhap).First();
+                    var lastBill = DataProvider.Instance.DB.HoaDonNhaps.OrderByDescending(t => t.SoHD).First();
                     var ListCTHDN = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == lastBill.SoHD);
 
                     //+ trong kho
@@ -157,12 +157,12 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 if (result == DialogResult.Yes)
                 {
                     //lưu
-                    cancel = false;
+                    cancel =chualuu =  false;
                 }
                 else if (result == DialogResult.No)
                 {
                     //hủy
-                    var lastBill = DataProvider.Instance.DB.HoaDonBans.OrderByDescending(t => t.NgayBan).First();
+                    var lastBill = DataProvider.Instance.DB.HoaDonBans.OrderByDescending(t => t.SoHD).First();
                     var ListCTHDB = DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == lastBill.SoHD);
 
                     //+ trong kho
@@ -183,7 +183,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
                     MessageBox.Show("Đã hoàn tác!");
 
-                    cancel = false;
+                    cancel = chualuu = false;
                 }
                 else
                 {

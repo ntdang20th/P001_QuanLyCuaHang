@@ -178,7 +178,7 @@
                             <TextBox materialDesign:HintAssist.Hint="Giá nhập"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Margin="2 5"
-                                     Text="{Binding GiaNhap, StringFormat={}{0:#,# VNĐ}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding GiaNhap, StringFormat={}{0:#,#}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="Black"
                              VerticalContentAlignment="Bottom" VerticalAlignment="Center"
                              Padding="0"

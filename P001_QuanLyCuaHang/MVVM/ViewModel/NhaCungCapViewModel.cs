@@ -64,7 +64,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
             Them_Command = new RelayCommand<object>((p) =>
             {
-                if (String.IsNullOrEmpty(Ten) || String.IsNullOrEmpty(Sdt) || String.IsNullOrEmpty(DiaChi))
+                if (String.IsNullOrEmpty(Ten))
                     return false;
 
                 var ds = DataProvider.Instance.DB.NhaCungCaps.Where(t => t.Ten == Ten);
