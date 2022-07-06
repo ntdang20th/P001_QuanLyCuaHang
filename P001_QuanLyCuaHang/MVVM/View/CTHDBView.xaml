@@ -66,7 +66,7 @@
                         <ListView ItemsSource="{Binding ListCTHDB}" SelectedItem="{Binding SelectedCTHD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Width="auto" Header ="STT" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Width="auto" Header ="STT" DisplayMemberBinding="{Binding STT}"/>
                                     <GridViewColumn Width="auto" Header ="Tên hàng" DisplayMemberBinding="{Binding Hang.TenHang}"/>
                                     <GridViewColumn Width="auto" Header ="DVT" DisplayMemberBinding="{Binding Hang.DonViTinh.TenDonViTinh}"/>
                                     <GridViewColumn Width="auto" Header ="Giá">

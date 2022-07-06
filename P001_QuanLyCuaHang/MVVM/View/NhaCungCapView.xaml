@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
+             xmlns:func="clr-namespace:P001_QuanLyCuaHang.Functions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -122,14 +123,16 @@
                                   Background="White"
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
-                <ListView ItemsSource="{Binding ListNhaCungCap}" SelectedItem="{Binding SelectedNhaCungCap, Mode=OneWayToSource}" >
+                <ListView ItemsSource="{Binding ListNhaCungCap}" 
+                          func:GridViewSort.AutoSort="True"
+                          SelectedItem="{Binding SelectedNhaCungCap, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding Ten}"/>
-                                <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"/>
-                                <GridViewColumn Header ="Số diện thoại" DisplayMemberBinding="{Binding Sdt}"/>
-                                <GridViewColumn Header ="Email" DisplayMemberBinding="{Binding Email}"/>
+                                <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}" func:GridViewSort.PropertyName="Id"/>
+                            <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding Ten}" func:GridViewSort.PropertyName="Ten"/>
+                            <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}" func:GridViewSort.PropertyName="DiaChi"/>
+                            <GridViewColumn Header ="Số diện thoại" DisplayMemberBinding="{Binding Sdt}" func:GridViewSort.PropertyName="Sdt"/>
+                            <GridViewColumn Header ="Email" DisplayMemberBinding="{Binding Email}" func:GridViewSort.PropertyName="Email"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

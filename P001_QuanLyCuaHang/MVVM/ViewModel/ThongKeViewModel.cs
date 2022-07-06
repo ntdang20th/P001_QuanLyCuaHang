@@ -124,6 +124,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new ObservableCollection<HoaDonNhap>( DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap == today));
                 ListHDB = new ObservableCollection<HoaDonBan>( DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan == today));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -141,6 +142,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap <= lastDayOfWeek && t.NgayNhap>=firstDayOfWeek));
                 ListHDB = new ObservableCollection<HoaDonBan>( DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan <= lastDayOfWeek && t.NgayBan >= firstDayOfWeek));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -158,6 +160,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new  ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap >= firstDayOfMonth));
                 ListHDB = new  ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan >= firstDayOfMonth));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -176,6 +179,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap >= firstDayOfSeason));
                 ListHDB = new ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan >= firstDayOfSeason));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -190,6 +194,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap.Value.Year >= DateTime.Today.Year));
                 ListHDB = new ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan.Value.Year >= DateTime.Today.Year));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -213,6 +218,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 //danh sách hóa đơn trong ngày
                 ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap >= ngaybd && t.NgayNhap <= ngaykt));
                 ListHDB = new ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan >= ngaybd && t.NgayBan <= ngaykt));
+                demSTT();
                 TinhTien();
                 LayDSKHvNCC();
             });
@@ -271,22 +277,6 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         }
 
         #region Method
-        void tinhThanhTienHDN(List<ChiTietHDN> list)
-        {
-            foreach(ChiTietHDN i in list)
-            {
-                i.ThanhTien = (int)(i.SoLuong * i.DonGiaNhap);
-            }
-        }
-
-        void tinhThanhTienHDB(List<ChiTietHDB> list)
-        {
-            foreach (ChiTietHDB i in list)
-            {
-                i.ThanhTien = (int)(i.SoLuong * i.DonGiaBan);
-            }
-        }
-
         public static int GetIso8601WeekOfYear(DateTime time)
         {
             DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
@@ -328,6 +318,46 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             return 10;
         }
 
+        void tinhThanhTienHDN(List<ChiTietHDN> list)
+        {
+            foreach(ChiTietHDN i in list)
+            {
+                i.ThanhTien = (int)(i.SoLuong * i.DonGiaNhap);
+            }
+        }
+
+        void tinhThanhTienHDB(List<ChiTietHDB> list)
+        {
+            foreach (ChiTietHDB i in list)
+            {
+                i.ThanhTien = (int)(i.SoLuong * i.DonGiaBan);
+            }
+        }
+
+        void demSTT()
+        {
+            int index = 1;
+            if(ListHDN != null)
+            {
+                foreach (HoaDonNhap i in ListHDN)
+                {
+                    var temp = index++;
+                    i.STT = temp;
+                }
+            }
+                
+            if(ListHDB != null)
+            {
+                index = 1;
+                foreach (HoaDonBan i in ListHDB)
+                {
+                    var temp = index++;
+                    i.STT = temp;
+                }
+            }
+            
+        }
+
         void TinhTien()
         {
             //tính
@@ -361,21 +391,28 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             IEnumerable<int?> idkh = ListHDB.Select(i => i.Makh).Distinct();
             IEnumerable<int?> idncc = ListHDN.Select(i => i.IdNCC).Distinct();
 
+            int index = 1;
             foreach(int i in idkh)
             {
                 int count = ListHDB.Where(t => t.Makh == i).Count();
-                var kh = ListHDB.Where(t => t.Makh == i).Select(x => new { TenKH = x.KhachHang.HoTen, SLHD = count, TongTT = x.ChiTietHDBs.Sum(y => y.ThanhTien) });
+                int tt = ListHDB.Where(t => t.Makh == i).Sum(x=>x.ThanhTien);
+                var temp = index;
+                var kh = ListHDB.Where(t => t.Makh == i).Select(x => new { STT = temp,TenKH = x.KhachHang.HoTen, SLHD = count, TongTT = tt }).Distinct();
                 ListKhachHang.Add(kh);
+                index++;
             }
 
+            index = 1;
             foreach (int i in idncc)
             {
                 int count = ListHDN.Where(t => t.IdNCC == i).Count();
-                var ncc = ListHDN.Where(t => t.IdNCC == i).Select(x => new { TenNCC = x.NhaCungCap.Ten, SLHD = count, TongTT = x.ChiTietHDNs.Sum(y => y.ThanhTien) });
+                int tt = ListHDN.Where(t => t.IdNCC == i).Sum(x=>x.ThanhTien);
+                var temp = index;
+                var ncc = ListHDN.Where(t => t.IdNCC == i).Select(x => new { STT = temp, TenNCC = x.NhaCungCap.Ten, SLHD = count, TongTT = tt}).Distinct();
                 ListNCC.Add(ncc);
+                index++;
             }
         }
-
 
         void LayDSHetHang()
         {
@@ -383,7 +420,8 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             ListHetHang = new ObservableCollection<object>();
             var ListCTHDN = DataProvider.Instance.DB.ChiTietHDNs.ToList();
             var ListCTHDB = DataProvider.Instance.DB.ChiTietHDBs.ToList();
-            int i = 1;
+
+            int index = 1;
             foreach(Hang h in listHang)
             {
                 int idhang = h.Id;
@@ -391,9 +429,9 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 var listBan = ListCTHDB.Where(x => x.IdHang == idhang);
                 int slNhap = (int)(listNhap.Count()  == 0 ? 0 : listNhap.Sum(x => x.SoLuong));
                 int slBan = (int)(listBan.Count() == 0 ? 0 : listBan.Sum(x => x.SoLuong));
-                var hang = ListCTHDN.Where(t => t.IdHang == idhang).Select(x => new { STT = i, Ten = x.Hang.TenHang, SoLuongNhap = slNhap, SoLuongBan = slBan, ConLai = h.SoLuongTon }).Distinct();
+                var temp = index++;
+                var hang = ListCTHDN.Where(t => t.IdHang == idhang).Select(x => new { STT = temp, Ten = x.Hang.TenHang, SoLuongNhap = slNhap, SoLuongBan = slBan, ConLai = h.SoLuongTon }).Distinct();
                 ListHetHang.Add(hang);
-                i++;
             }
         }
 

@@ -8,6 +8,7 @@
              xmlns:function ="clr-namespace:P001_QuanLyCuaHang.Functions"
              xmlns:viewModel ="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              xmlns:view="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
+             xmlns:func="clr-namespace:P001_QuanLyCuaHang.Functions"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DesignHeight="600" d:DesignWidth="800">
@@ -344,12 +345,15 @@
                 </TabControl.Resources>
                 <TabItem Header="Hóa đơn nhập">
                     <Grid>
-                        <ListView ItemsSource="{Binding ListHDN}" SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListHDN}" 
+                                  func:GridViewSort.AutoSort="True"
+                                  SelectedItem="{Binding SelectedHDN, Mode=OneWayToSource}" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
-                                    <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}"/>
-                                    <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}"/>
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}" func:GridViewSort.PropertyName="STT"/>
+                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}" func:GridViewSort.PropertyName="SoHD"/>
+                                    <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}" func:GridViewSort.PropertyName="NgayNhap"/>
+                                    <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}" func:GridViewSort.PropertyName="NhaCungCap.Ten"/>
                                     <GridViewColumn Header ="Thành tiền">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -369,12 +373,15 @@
                 </TabItem>
                 <TabItem Header="Hóa đơn bán">
                     <Grid>
-                        <ListView ItemsSource="{Binding ListHDB}" SelectedItem="{Binding SelectedHDB, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListHDB}"
+                                  func:GridViewSort.AutoSort="True"
+                                  SelectedItem="{Binding SelectedHDB, Mode=OneWayToSource}" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}"/>
-                                    <GridViewColumn Header ="Ngày bán" DisplayMemberBinding="{Binding NgayBan, StringFormat='MM/dd/yyyy'}"/>
-                                    <GridViewColumn Header ="Khách hàng" DisplayMemberBinding="{Binding KhachHang.HoTen}"/>
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}" func:GridViewSort.PropertyName="STT"/>
+                                    <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}" func:GridViewSort.PropertyName="SoHD"/>
+                                    <GridViewColumn Header ="Ngày bán" DisplayMemberBinding="{Binding NgayBan, StringFormat='MM/dd/yyyy'}" func:GridViewSort.PropertyName="NgayBan"/>
+                                    <GridViewColumn Header ="Khách hàng" DisplayMemberBinding="{Binding KhachHang.HoTen}" func:GridViewSort.PropertyName="KhachHang.HoTen"/>
                                     <GridViewColumn Header ="Thành tiền">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -394,13 +401,14 @@
                 </TabItem>
                 <TabItem Header="Khách hàng">
                     <Grid>
-                        <ListView ItemsSource="{Binding ListKhachHang}" SelectedItem="{Binding SelectedKhachHang, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListKhachHang}" 
+                                  func:GridViewSort.AutoSort="True">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding MaKh}"/>
-                                    <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding TenKH}"/>
-                                    <GridViewColumn Header ="Số đơn đã mua" DisplayMemberBinding="{Binding SLHD}"/>
-                                    <GridViewColumn Header ="Tổng thành tiền">
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}" func:GridViewSort.PropertyName="STT"/>
+                                    <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding TenKH}" func:GridViewSort.PropertyName="TenKH"/>
+                                    <GridViewColumn Header ="Số đơn đã mua" DisplayMemberBinding="{Binding SLHD}" func:GridViewSort.PropertyName="SLHD"/>
+                                    <GridViewColumn Header ="Tổng thành tiền"  func:GridViewSort.PropertyName="TongTT">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding TongTT, StringFormat={}{0:#,#}}" TextAlignment="Right" />
@@ -414,13 +422,14 @@
                 </TabItem>
                 <TabItem Header="Nhà cung cấp">
                     <Grid>
-                        <ListView ItemsSource="{Binding ListNCC}" SelectedItem="{Binding SelectedNCC, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListNCC}" 
+                                  func:GridViewSort.AutoSort="True">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding Id}"/>
-                                    <GridViewColumn Header ="Tên NCC" DisplayMemberBinding="{Binding TenNCC}"/>
-                                    <GridViewColumn Header ="Số đơn đã nhập" DisplayMemberBinding="{Binding SLHD}"/>
-                                    <GridViewColumn Header ="Tổng thành tiền">
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}" func:GridViewSort.PropertyName="STT"/>
+                                    <GridViewColumn Header ="Tên NCC" DisplayMemberBinding="{Binding TenNCC}" func:GridViewSort.PropertyName="TenNCC"/>
+                                    <GridViewColumn Header ="Số đơn đã nhập" DisplayMemberBinding="{Binding SLHD}" func:GridViewSort.PropertyName="SLHD"/>
+                                    <GridViewColumn Header ="Tổng thành tiền" func:GridViewSort.PropertyName="TongTT">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding TongTT, StringFormat={}{0:#,#}}" TextAlignment="Right" />
@@ -435,14 +444,15 @@
 
                 <TabItem Header="Sắp hết hàng">
                     <Grid>
-                        <ListView ItemsSource="{Binding ListHetHang}" >
+                        <ListView ItemsSource="{Binding ListHetHang}" 
+                                  func:GridViewSort.AutoSort="True">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}"/>
-                                    <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding Ten}"/>
-                                    <GridViewColumn Header ="Đã nhập" DisplayMemberBinding="{Binding SoLuongNhap}"/>
-                                    <GridViewColumn Header ="Đã bán" DisplayMemberBinding="{Binding SoLuongBan}"/>
-                                    <GridViewColumn Header ="Còn lại" DisplayMemberBinding="{Binding ConLai}"/>
+                                    <GridViewColumn Header ="STT" DisplayMemberBinding="{Binding STT}" func:GridViewSort.PropertyName="STT"/>
+                                    <GridViewColumn Header ="Tên hàng" DisplayMemberBinding="{Binding Ten}" func:GridViewSort.PropertyName="Ten"/>
+                                    <GridViewColumn Header ="Đã nhập" DisplayMemberBinding="{Binding SoLuongNhap}" func:GridViewSort.PropertyName="SoLuongNhap"/>
+                                    <GridViewColumn Header ="Đã bán" DisplayMemberBinding="{Binding SoLuongBan}" func:GridViewSort.PropertyName="SoLuongBan"/>
+                                    <GridViewColumn Header ="Còn lại" DisplayMemberBinding="{Binding ConLai}" func:GridViewSort.PropertyName="ConLai"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

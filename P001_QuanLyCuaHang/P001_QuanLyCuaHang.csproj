@@ -96,6 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\ChuyenSoThanhChu.cs" />
+    <Compile Include="Functions\GridViewSord.cs" />
     <Compile Include="InHDB.xaml.cs">
       <DependentUpon>InHDB.xaml</DependentUpon>
     </Compile>
@@ -135,10 +136,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\NhaCungCapView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\QuanLy_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,9 +245,6 @@
     </Compile>
     <Compile Include="MVVM\View\NhaCungCapView.xaml.cs">
       <DependentUpon>NhaCungCapView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\QuanLy_View.xaml.cs">
-      <DependentUpon>QuanLy_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ThongKeView.xaml.cs">
       <DependentUpon>ThongKeView.xaml</DependentUpon>

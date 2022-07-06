@@ -129,7 +129,7 @@
                                     </RadioButton>
 
 
-                                    <RadioButton Style="{StaticResource Button_Dashboard}"
+                                    <RadioButton IsChecked="True" Style="{StaticResource Button_Dashboard}"
                                             Command="{Binding ThongKeCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="ChartBarStacked" Margin="15 10 10 10" Width="20" Height="20"/>

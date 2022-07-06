@@ -21,6 +21,7 @@ namespace P001_QuanLyCuaHang.MVVM.Model
         }
     
         public string SoHD { get; set; }
+        public int STT { get; set; }
         public Nullable<System.DateTime> NgayNhap { get; set; }
         public Nullable<int> IdNCC { get; set; }
         public int ThanhTien { get; set; }

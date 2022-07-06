@@ -14,6 +14,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 {
     public class HoaDonBanViewModel : BaseViewModel
     {
+        int Stt;
         #region List
         public ObservableCollection<Hang> _ListHang;
         public ObservableCollection<Hang> ListHang { get => _ListHang; set { _ListHang = value; OnPropertyChanged(); } }
@@ -163,6 +164,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 ListCTHDB = new ObservableCollection<ChiTietHDB>();
 
                 MainViewModel.chualuu = true;
+                Stt = 1;
             });
 
             ThemSP_Command = new RelayCommand<object>((p) =>
@@ -173,7 +175,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             }, (p) =>
             {
                 //them sp
-                CTHD = new ChiTietHDB() { IdHDB = HDB.SoHD, IdHang = SelectedHang.Id, SoLuong = SoLuong, DonGiaBan = GiaBan, KhuyenMai = KhuyenMai };
+                CTHD = new ChiTietHDB() { IdHDB = HDB.SoHD, STT = Stt++, IdHang = SelectedHang.Id, SoLuong = SoLuong, DonGiaBan = GiaBan, KhuyenMai = KhuyenMai };
                 DataProvider.Instance.DB.ChiTietHDBs.Add(CTHD);
                 DataProvider.Instance.DB.SaveChanges();
                 CTHD.ThanhTien = ThanhTien;
@@ -246,7 +248,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 DataProvider.Instance.DB.SaveChanges();
                 ListCTHDB.Remove(x);
 
-                
+                Stt--;
             });
 
             LuuHD_Command = new RelayCommand<object>((p) =>

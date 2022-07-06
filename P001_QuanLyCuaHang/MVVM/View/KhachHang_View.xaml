@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              xmlns:viewModel ="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
+             xmlns:func="clr-namespace:P001_QuanLyCuaHang.Functions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -157,15 +158,17 @@
                                   Background="White"
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
-                <ListView ItemsSource="{Binding ListKhachHang}" SelectedItem="{Binding SelectedKhachHang, Mode=OneWayToSource}" >
+                <ListView ItemsSource="{Binding ListKhachHang}"
+                          func:GridViewSort.AutoSort="True"
+                          SelectedItem="{Binding SelectedKhachHang, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header ="Mã khách hàng" DisplayMemberBinding="{Binding MaKh}"/>
-                                <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding HoTen}"/>
-                                <GridViewColumn Header ="Giới tính" DisplayMemberBinding="{Binding GioiTinh}"/>
-                                <GridViewColumn Header ="Năm sinh" DisplayMemberBinding="{Binding NamSinh}"/>
-                                <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"/>
-                                <GridViewColumn Header ="Số điện thoại" DisplayMemberBinding="{Binding Sdt}"/>
+                                <GridViewColumn Header ="Mã khách hàng" DisplayMemberBinding="{Binding MaKh}" func:GridViewSort.PropertyName="Makh"/>
+                            <GridViewColumn Header ="Họ tên" DisplayMemberBinding="{Binding HoTen}" func:GridViewSort.PropertyName="HoTen"/>
+                            <GridViewColumn Header ="Giới tính" DisplayMemberBinding="{Binding GioiTinh}" func:GridViewSort.PropertyName="GioiTinh"/>
+                            <GridViewColumn Header ="Năm sinh" DisplayMemberBinding="{Binding NamSinh}" func:GridViewSort.PropertyName="NamSinh"/>
+                            <GridViewColumn Header ="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}" func:GridViewSort.PropertyName="DiaChi"/>
+                            <GridViewColumn Header ="Số điện thoại" DisplayMemberBinding="{Binding Sdt}" func:GridViewSort.PropertyName="Sdt"/>
                             </GridView>
                         </ListView.View>
 

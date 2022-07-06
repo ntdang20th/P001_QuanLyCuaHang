@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:P001_QuanLyCuaHang.MVVM.View"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
+             xmlns:function ="clr-namespace:P001_QuanLyCuaHang.Functions"
              xmlns:viewModel="clr-namespace:P001_QuanLyCuaHang.MVVM.ViewModel"
              d:DesignHeight="auto" d:DesignWidth="auto" 
              Foreground="Black">
@@ -170,15 +171,17 @@
                                   UniformCornerRadius="5"
                                   Margin="10" Padding="10">
                     <Grid Grid.Row="2">
-                        <ListView ItemsSource="{Binding ListHang}" SelectedItem="{Binding SelectedHang, Mode=OneWayToSource}" >
+                        <ListView ItemsSource="{Binding ListHang}" 
+                                  SelectedItem="{Binding SelectedHang, Mode=OneWayToSource}" 
+                                  function:GridViewSort.AutoSort="True">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}"/>
-                                    <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding TenHang}"/>
-                                    <GridViewColumn Header ="ĐVT" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}"/>
-                                    <GridViewColumn Header ="Giá nhập" DisplayMemberBinding="{Binding GiaNhap}"/>
-                                    <GridViewColumn Header ="SLT" DisplayMemberBinding="{Binding SoLuongTon}"/>
-                                    <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}"/>
+                                    <GridViewColumn Header ="ID" DisplayMemberBinding="{Binding Id}" function:GridViewSort.PropertyName="Id"/>
+                                <GridViewColumn Header ="Tên" DisplayMemberBinding="{Binding TenHang}" function:GridViewSort.PropertyName="TenHang"/>
+                                <GridViewColumn Header ="ĐVT" DisplayMemberBinding="{Binding DonViTinh.TenDonViTinh}" function:GridViewSort.PropertyName="DonViTinh.TenDonViTinh"/>
+                                <GridViewColumn Header ="Giá nhập" DisplayMemberBinding="{Binding GiaNhap}" function:GridViewSort.PropertyName="GiaNhap"/>
+                                <GridViewColumn Header ="SLT" DisplayMemberBinding="{Binding SoLuongTon}" function:GridViewSort.PropertyName="SoLuongTon"/>
+                                <GridViewColumn Header ="Giá bán" DisplayMemberBinding="{Binding GiaBan}" function:GridViewSort.PropertyName="GiaBan"/>
                                 </GridView>
                             </ListView.View>
 
