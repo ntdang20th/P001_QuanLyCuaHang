@@ -1,4 +1,6 @@
-﻿using P001_QuanLyCuaHang.Functions;
+﻿using ClosedXML.Excel;
+using ExcelDataReader;
+using P001_QuanLyCuaHang.Functions;
 using P001_QuanLyCuaHang.MVVM.Model;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace P001_QuanLyCuaHang.MVVM.ViewModel
 {
@@ -255,7 +259,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             {
                 if (ListHDB == null || ListHDN == null)
                 {
-                    MessageBox.Show("Đã dọn xong!");
+                    System.Windows.Forms.MessageBox.Show("Đã dọn xong!");
                     return;
                 }
 
@@ -279,7 +283,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                     }
                 }
                 DataProvider.Instance.DB.SaveChanges();
-                MessageBox.Show("Đã dọn xong!");
+                System.Windows.Forms.MessageBox.Show("Đã dọn xong!");
             });
 
             XuatExcelCommand = new RelayCommand<object>((p) =>
@@ -287,7 +291,94 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 return true;
             }, (p) =>
             {
-                
+                using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+                {
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using(XLWorkbook workbook = new XLWorkbook())
+                            {
+                                //Inizializar Librerias
+                                workbook.AddWorksheet("ThongKeHoaDon");
+                                var ws = workbook.Worksheet("ThongKeHoaDon");
+                                //Recorrer el objecto
+
+
+                                //status thong ke
+                                ws.Range("A1", "K1").Merge();
+                                ws.Cell("A1").Value = "Ngày xuất báo cáo: " + DateTime.Today.ToString("dd/MM/yyyy");
+                                ws.Cell("A1").Style.Font.FontSize = 20;
+
+                                //header
+
+                                ws.Range("A2", "K2").Style.Fill.BackgroundColor = XLColor.Yellow;
+                                ws.Cell("A2").Value = "STT";
+                                ws.Cell("B2").Value = "SoHD";
+                                ws.Cell("C2").Value = "Date";
+                                ws.Cell("D2").Value = "Số loại SP";
+                                ws.Cell("E2").Value = "Số lượng SP";
+                                ws.Cell("F2").Value = "Khuyến mãi";
+                                ws.Cell("G2").Value = "Tổng cộng";
+                                ws.Cell("H2").Value = "Tên KH / NCC";
+                                ws.Cell("I2").Value = "SDT";
+                                ws.Cell("J2").Value = "Địa chỉ";
+                                ws.Cell("K2").Value = "Ghi chú";
+
+                                //chèn data hóa đơn nhập
+                                ws.Range("A3", "K3").Merge();
+                                ws.Cell("A3").Value = "Hóa đơn nhập";
+
+                                int row = 4;
+                                foreach (HoaDonNhap i in ListHDN)
+                                {
+                                    ws.Cell("A" + row).Value = row-3;
+                                    ws.Cell("B" + row).Value = i.SoHD;
+                                    ws.Cell("C" + row).Value = ((DateTime)i.NgayNhap).ToString("dd/MM/yyyy");
+                                    ws.Cell("D" + row).Value = i.ChiTietHDNs.Count;
+                                    ws.Cell("E" + row).Value = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHDN == i.SoHD).Sum(t => t.SoLuong);
+                                    ws.Cell("F" + row).Value = 0;
+                                    ws.Cell("G" + row).Value = i.ThanhTien;
+                                    ws.Cell("H" + row).Value = i.NhaCungCap.Ten;
+                                    ws.Cell("I" + row).Value = i.NhaCungCap.Sdt;
+                                    ws.Cell("J" + row).Value = i.NhaCungCap.DiaChi;
+                                    ws.Cell("K" + row).Value = "";
+                                    row++;
+                                }
+
+                                //chèn data hóa đơn bán
+                                row = 4 + ListHDN.Count;
+                                ws.Range("A" + row, "K" + row).Merge();
+                                ws.Cell("A" + row).Value = "Hóa đơn nhập";
+                                row++;
+                                foreach (HoaDonBan i in ListHDB)
+                                {
+                                    ws.Cell("A" + row).Value = row-4-ListHDN.Count;
+                                    ws.Cell("B" + row).Value = i.SoHD;
+                                    ws.Cell("C" + row).Value = ((DateTime)i.NgayBan).ToString("dd/MM/yyyy");
+                                    ws.Cell("D" + row).Value = i.ChiTietHDBs.Count;
+                                    ws.Cell("E" + row).Value = DataProvider.Instance.DB.ChiTietHDBs.Where(t => t.IdHDB == i.SoHD).Sum(t => t.SoLuong);
+                                    TinhTien();
+                                    ws.Cell("F" + row).Value = "---";
+                                    ws.Cell("G" + row).Value = i.ThanhTien;
+                                    ws.Cell("H" + row).Value = i.KhachHang.HoTen;
+                                    ws.Cell("I" + row).Value = i.KhachHang.Sdt;
+                                    ws.Cell("J" + row).Value = i.KhachHang.DiaChi;
+                                    ws.Cell("K" + row).Value = "";
+                                    row++;
+                                }
+
+                                workbook.SaveAs(sfd.FileName);
+                                System.Windows.Forms.MessageBox.Show("Xuất file thành công!", "Thông báo");
+                            }
+                            
+                        }
+                        catch(Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show(ex.Message, "Thông báo");
+                        }
+                    }
+                }
             });
         }
 
@@ -452,7 +543,7 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
 
         void TinhHoanVon()
         {
-            List<Hang> ListHang = new List<Hang>(DataProvider.Instance.DB.Hangs);
+            List<Hang> ListHang = new List<Hang>(DataProvider.Instance.DB.Hangs.Where(t => t.An == 0));
             List<HoaDonNhap> ListNhap = new List<HoaDonNhap>( DataProvider.Instance.DB.HoaDonNhaps);
             List<HoaDonBan> ListXuat= new List<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans);
 

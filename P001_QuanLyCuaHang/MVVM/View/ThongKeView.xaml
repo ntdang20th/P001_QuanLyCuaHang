@@ -366,7 +366,7 @@
                                     <GridViewColumn Header ="Số HD" DisplayMemberBinding="{Binding SoHD}" func:GridViewSort.PropertyName="SoHD"/>
                                     <GridViewColumn Header ="Ngày nhập" DisplayMemberBinding="{Binding NgayNhap, StringFormat='MM/dd/yyyy'}" func:GridViewSort.PropertyName="NgayNhap"/>
                                     <GridViewColumn Header ="Nhà cung cấp" DisplayMemberBinding="{Binding NhaCungCap.Ten}" func:GridViewSort.PropertyName="NhaCungCap.Ten"/>
-                                    <GridViewColumn Header ="Thành tiền">
+                                    <GridViewColumn Header ="Thành tiền" func:GridViewSort.PropertyName="ThanhTien">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding ThanhTien, StringFormat={}{0:#,#}}" TextAlignment="Right" />
