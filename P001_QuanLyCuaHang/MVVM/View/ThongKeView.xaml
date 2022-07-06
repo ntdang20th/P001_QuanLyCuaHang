@@ -113,14 +113,21 @@
                         </Grid.ColumnDefinitions>
                         <DatePicker Grid.Column="0" IsEnabled="{Binding TuyChon}"
                             materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    
                             materialDesign:HintAssist.Foreground="Black"
                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
                             VerticalAlignment="Center"
-                            FontSize="12"
+                            FontSize="12" 
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                             VerticalContentAlignment="Center"
-                            SelectedDate="{Binding NgaySinh, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                    Margin="10,-10,0,0"/>
+                            SelectedDate="{Binding NgayBD, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                    Margin="10,-10,0,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding ThongKe_Command}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
 
                         <DatePicker Grid.Column="1" IsEnabled="{Binding TuyChon}"
                             materialDesign:HintAssist.Hint="Ngày kết thúc"
@@ -130,8 +137,14 @@
                             FontSize="12"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                             VerticalContentAlignment="Center"
-                            SelectedDate="{Binding NgaySinh, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                    Margin="10,-10,0,0"/>
+                            SelectedDate="{Binding NgayKT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                    Margin="10,-10,0,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding ThongKe_Command}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
 
                     </Grid>
 
@@ -141,12 +154,11 @@
 
 
             <Button Grid.Column="1" 
-                    Content="Xem thống kê"
+                    Content="Xuất Excel"
                     Width="120"
                     Height="50"
                     FontSize="16"
-                    Command="{Binding ThongKe_Command}"
-                    CommandParameter="{Binding ElementName=DateGrid}"
+                    Command="{Binding XuatExcelCommand}"
                     Style="{StaticResource ButtonChucNang}"/>
 
             <Button Grid.Column="2" 

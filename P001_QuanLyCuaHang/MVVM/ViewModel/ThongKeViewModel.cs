@@ -60,8 +60,12 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         private bool _TuyChon = false;
         public bool TuyChon { get => _TuyChon; set { _TuyChon = value; OnPropertyChanged(); } }
 
+        private DateTime _NgayBD;
+        public DateTime NgayBD { get => _NgayBD; set { _NgayBD = value; OnPropertyChanged(); } }
 
-        
+        private DateTime _NgayKT;
+        public DateTime NgayKT { get => _NgayKT; set { _NgayKT = value; OnPropertyChanged(); } }
+
         #endregion
         #region Selected Item
         private HoaDonNhap _SelectedHDN;
@@ -106,12 +110,14 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
         public ICommand ChiTietHDB_Command { get; set; }
         public ICommand ChiTietHDN_Command { get; set; }
         public ICommand DonRacCommand { get; set; }
+        public ICommand XuatExcelCommand { get; set; }
         #endregion
 
         public ThongKeViewModel()
         {
             LayDSHetHang();
             TinhHoanVon();
+            NgayBD = NgayKT = DateTime.Today;
 
             Ngay_Command = new RelayCommand<object>((p) =>
             {
@@ -207,17 +213,18 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 TuyChon = true;
             });
 
-            ThongKe_Command = new RelayCommand<Grid>((p) =>
+            ThongKe_Command = new RelayCommand<object>((p) =>
             {
+                if (NgayBD == null || NgayKT == null )
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
-                DateTime ngaybd = DateTime.Parse(p.Children[0].ToString());
-                DateTime ngaykt = DateTime.Parse(p.Children[1].ToString());
-
                 //danh sách hóa đơn trong ngày
-                ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap >= ngaybd && t.NgayNhap <= ngaykt));
-                ListHDB = new ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan >= ngaybd && t.NgayBan <= ngaykt));
+                ListHDN = new ObservableCollection<HoaDonNhap>(DataProvider.Instance.DB.HoaDonNhaps.Where(t => t.NgayNhap >= NgayBD && t.NgayNhap <= NgayKT));
+                ListHDB = new ObservableCollection<HoaDonBan>(DataProvider.Instance.DB.HoaDonBans.Where(t => t.NgayBan >= NgayBD && t.NgayBan <= NgayKT));
                 demSTT();
                 TinhTien();
                 LayDSKHvNCC();
@@ -273,6 +280,14 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
                 }
                 DataProvider.Instance.DB.SaveChanges();
                 MessageBox.Show("Đã dọn xong!");
+            });
+
+            XuatExcelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                
             });
         }
 
