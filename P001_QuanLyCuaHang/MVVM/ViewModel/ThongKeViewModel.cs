@@ -573,9 +573,11 @@ namespace P001_QuanLyCuaHang.MVVM.ViewModel
             {
                 GTKho += (int)(i.GiaBan * i.SoLuongTon);
 
+                if (i.ChiTietHDNs.Count==0)
+                    continue;
+
                 var gianhap = DataProvider.Instance.DB.ChiTietHDNs.Where(t => t.IdHang == i.Id).OrderByDescending(t => t.Id).Select(t=>t.DonGiaNhap).First();
-                if (gianhap == null)
-                    break;
+                
                 GTBan += (int)(i.SoLuongTon * (int)gianhap);
             }
             if(daban <= danhap)
